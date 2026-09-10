@@ -1,0 +1,1656 @@
+/* vkstack TechDocs theme — Broadcom chrome + remapped map accents */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+:root {
+  --bc-body: #494A5E;
+  --bc-bg: #FFFFFF;
+  --bc-emphasis: #000000;
+  --bc-header: #F5F5F6;
+  --bc-footer: #E8E8EB;
+  --bc-slate-100: #F5F5F6;
+  --bc-slate-200: #E8E8EB;
+  --bc-slate-500: #757586;
+  --bc-slate-600: #494A5E;
+  --bc-slate-700: #32344A;
+  --bc-slate-900: #1B1D36;
+  --bc-red: #CC092F;
+  --bc-purple: #6C4B94;
+  --bc-sapphire: #005C8A;
+  --bc-sapphire-400: #0075A3;
+  --bc-border: #DEE2E6;
+  --bc-border-translucent: rgba(0, 0, 0, 0.175);
+  --bc-radius: 0.375rem;
+  --bc-secondary: rgba(73, 74, 94, 0.75);
+  --header-h: 3.25rem;
+}
+
+html {
+  font-family: var(--font, "Inter", sans-serif);
+  font-size: 15px;
+  line-height: 23px;
+}
+
+body {
+  font-family: var(--font, "Inter", sans-serif);
+  background: var(--bc-bg);
+  color: var(--bc-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+a {
+  color: var(--bc-sapphire);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--bc-sapphire-400);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* —— TechDocs sticky header —— */
+.site-header {
+  background: var(--bc-header);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.site-header-inner {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  min-width: 0;
+  text-decoration: none;
+  color: var(--bc-body);
+}
+.brand:hover { color: var(--bc-body); text-decoration: none; }
+.brand-mark {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+  color: var(--bc-body);
+  white-space: nowrap;
+}
+.brand-sep {
+  color: var(--bc-slate-500);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 34px;
+}
+.brand-product {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--bc-slate-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+.header-link {
+  color: var(--bc-body);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 23px;
+  white-space: nowrap;
+}
+.header-link:hover {
+  color: var(--bc-body);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+.header-gradient,
+.footer-gradient {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(to right, #CC092F, #6C4B94, #1B1D36);
+}
+
+.site-footer {
+  background: var(--bc-footer);
+  margin-top: auto;
+}
+.site-footer-inner {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--bc-secondary);
+}
+.site-footer-inner p { margin: 0; }
+.site-footer a { color: var(--bc-sapphire); }
+
+.page-intro {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--bc-border);
+}
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--bc-secondary);
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+.breadcrumb a { color: var(--bc-sapphire); }
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.35rem;
+  color: var(--bc-slate-500);
+}
+.page-intro h1 {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: -0.25px;
+  color: var(--bc-emphasis);
+}
+.page-intro .lede {
+  margin: 0;
+  max-width: 52rem;
+  color: var(--bc-body);
+}
+
+/* Soften original masthead into page chrome */
+.masthead {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 1rem !important;
+}
+.masthead-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.masthead h1 { display: none; } /* brand lives in TechDocs header */
+#tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--bc-border);
+  padding-bottom: 0;
+}
+#tabs button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0.4rem 0.75rem;
+  color: var(--bc-slate-500);
+  cursor: pointer;
+  font: inherit;
+}
+#tabs button.active {
+  color: var(--bc-sapphire);
+  border-bottom-color: var(--bc-sapphire);
+  font-weight: 600;
+}
+#tabs button:hover { color: var(--bc-sapphire-400); }
+
+.disclaimer {
+  background: var(--bc-slate-100);
+  border-left: 3px solid var(--bc-red);
+  padding: 0.75rem 1rem;
+  margin: 0.75rem 0 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--bc-body);
+}
+.meta {
+  font-size: 13px;
+  color: var(--bc-slate-500);
+  margin: 0.5rem 0 0;
+}
+
+/* Segmented control — sapphire active */
+.segmented .segment.is-active {
+  background: var(--bc-sapphire) !important;
+  color: #fff !important;
+  border-color: var(--bc-sapphire) !important;
+}
+.pin-label { color: var(--bc-sapphire) !important; font-weight: 600; }
+
+/* Map node accents already use --signal/--pick; reinforce pinned with red */
+.map-node.is-pinned .map-node-box {
+  fill: var(--bc-sapphire) !important;
+  stroke: var(--bc-sapphire) !important;
+}
+.map-node.is-picked .map-node-box {
+  stroke: var(--bc-purple) !important;
+}
+.map-link {
+  stroke: var(--bc-sapphire) !important;
+}
+.map-edge.is-hot .map-link {
+  stroke: var(--bc-red) !important;
+}
+
+main.page {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--page-max, 1800px);
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+.gh-link, .theme-toggle {
+  color: var(--bc-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--bc-radius);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+.gh-link:hover, .theme-toggle:hover {
+  background: var(--bc-slate-200);
+  text-decoration: none;
+  color: var(--bc-body);
+}
+
+
+/* vkstack — a cross-section of the vSphere stack.
+   The page is deliberately quiet so that one thing can be loud: the lit load path
+   through the layers. Everything else is hairlines and cool greys. */
+
+/* The grey ramp is three tiers deep and every tier carries text, so each one clears WCAG AA
+   (4.5:1) against both --surface and --panel. The values sit a step above that floor rather
+   than on it — the lowest tier lands near 6:1 — because AA on its own still reads as thin
+   grey-on-grey to people who asked for more contrast, and the headroom costs the design
+   nothing. internal/web/contrast_test.go asserts the AA floor and the tier ordering. */
+:root {
+  color-scheme: light dark;
+
+  --surface: #FFFFFF;
+  --panel: #ffffff;
+  --ink: #1B1D36;
+  --muted: #494A5E;
+  --faint: #757586;
+  --hair: #DEE2E6;
+  /* --hair is a decorative divider and is deliberately below the 3:1 line. Anything that
+     bounds a control — an input, a button — uses --edge instead, which clears it. */
+  --edge: rgba(0, 0, 0, 0.175);
+
+  /* Broadcom TechDocs accents: sapphire lit path, purple recommended, red emphasis. */
+  --signal: #005C8A;
+  --signal-soft: #E5F2F7;
+  --pick: #6C4B94;
+  --pick-soft: #F0EAF6;
+  --warn: #CC092F;
+  /* Support lifecycle. Amber for Technical Guidance, muted red for End of Support —
+     both quieter than the indigo path so they qualify a node without competing with it. */
+  --tg: #a3690a;
+  --tg-soft: #fbf0dc;
+  --eos: #9c2b30;
+  --eos-soft: #f7e4e5;
+
+  /* Text that sits *on* an accent fill rather than beside it. It has to flip with the
+     theme: dark mode lightens every accent, so white-on-accent — which is fine here —
+     collapses to about 2:1 there. */
+  --on-accent: #ffffff;
+  /* Shadows are cast in the surface's own darkness, not a fixed near-black, or they
+     vanish against a dark panel. An r,g,b triple so callers pick their own alpha. */
+  --shadow: 10, 16, 28;
+
+  --radius: 7px;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --font: "Inter", "InterVariable", system-ui, sans-serif;
+  --step: 180ms;
+
+  /* The page column. --page-max is the outer box <main> is capped at, padding included;
+     --page-content is what is left inside that padding, and is what the masthead holds
+     its own contents to so the two columns share one left edge. Derived from one number
+     so the pair cannot drift apart.
+
+     This is not a prose measure — the wide things on this page are a drawing and a set of
+     wrapped version rows, both of which read better with more room, and the one genuinely
+     text-shaped element (.lede) sets its own 60ch. At 1240 the map was boxed into roughly
+     half a modern window with its own detail rail pushed against it. */
+  --page-max: 1800px;
+  --page-content: calc(var(--page-max) - 3rem);
+}
+
+/* The palette follows the OS by default, but an explicit choice from the header toggle
+   wins over it: data-theme="light" opts back out of an OS that is dark, and the
+   data-theme="dark" block far below opts into dark on an OS that is light. Some embedded
+   webviews (IDE preview panes, side panels) report light regardless of the real OS and
+   swallow the native right-click menu too — the toggle is the way out of that. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #10141b;
+    --panel: #171d26;
+    --ink: #e6eaf1;
+    --muted: #aab5c4;
+    --faint: #8f9cb0;
+    --hair: #2a3441;
+    --edge: #5f6d7f;
+
+    --signal: #4CA3C7;
+    --signal-soft: #0A2A3A;
+    --pick: #9B7EBF;
+    --pick-soft: #2A1F3A;
+    --warn: #f0906a;
+    --tg: #dda94a;
+    --tg-soft: #33290f;
+    --eos: #e8848a;
+    --eos-soft: #331a1c;
+
+    --on-accent: #10141b;
+    --shadow: 0, 0, 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --step: 0ms; }
+}
+
+/* Explicit dark, chosen from the header toggle, for when the OS (or a lying webview) is
+   light. These values must stay identical to the prefers-color-scheme block above; it sits
+   after every @media on purpose so internal/web/contrast_test.go, which reads the tokens
+   between the dark media query and the next @media, keeps testing a single copy. */
+:root[data-theme="dark"] {
+  --surface: #10141b;
+  --panel: #171d26;
+  --ink: #e6eaf1;
+  --muted: #aab5c4;
+  --faint: #8f9cb0;
+  --hair: #2a3441;
+  --edge: #5f6d7f;
+
+  --signal: #4CA3C7;
+  --signal-soft: #0A2A3A;
+  --pick: #9B7EBF;
+  --pick-soft: #2A1F3A;
+  --warn: #f0906a;
+  --tg: #dda94a;
+  --tg-soft: #33290f;
+  --eos: #e8848a;
+  --eos-soft: #331a1c;
+
+  --on-accent: #10141b;
+  --shadow: 0, 0, 0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ---- masthead ---------------------------------------------------------- */
+
+/* The bar itself spans the window — it is the page's top edge, and a panel that stopped
+   short of the sides would read as a floating card. Its contents are held to the same
+   column as <main> below so the two line up, rather than the text starting at the window
+   edge while the content under it starts wherever the column does. */
+.masthead {
+  background: var(--panel);
+  border-bottom: 1px solid var(--hair);
+  padding: 0.9rem 1.5rem 0.7rem;
+}
+
+.masthead > * {
+  max-width: var(--page-content);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.masthead-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.meta {
+  margin: 0.6rem 0 0;
+  font-size: 0.76rem;
+  color: var(--faint);
+  font-family: var(--mono);
+}
+
+/* The provenance of the whole page, in the masthead. It qualifies everything below it,
+   so it reads before the answer does rather than after — and it stays on the printed
+   page: a change board reading a printout needs the caveat as much as the screen does. */
+.disclaimer {
+  margin: 0.5rem 0 0;
+  max-width: 82ch;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--faint);
+}
+
+.disclaimer strong { color: var(--muted); }
+.disclaimer a { color: inherit; text-decoration-color: var(--hair); }
+.disclaimer a:hover { color: var(--ink); text-decoration-color: currentColor; }
+
+#tabs { display: flex; gap: 1.1rem; }
+
+#tabs button {
+  background: none;
+  border: 0;
+  padding: 0.15rem 0;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+#tabs button:hover { color: var(--ink); }
+#tabs button.active { color: var(--ink); border-bottom-color: var(--signal); }
+
+/* The theme toggle and the link out both belong at the row's edge, not in the reading
+   order of the tabs. The toggle carries the margin that pushes the whole cluster right;
+   the link sits beside it on the row's own gap. */
+.theme-toggle {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  padding: 0;
+  display: inline-flex;
+  align-self: center;
+  color: var(--faint);
+  cursor: pointer;
+}
+
+.gh-link {
+  display: inline-flex;
+  align-self: center;
+  color: var(--faint);
+}
+
+.theme-toggle:hover,
+.gh-link:hover { color: var(--ink); }
+.theme-toggle:focus-visible,
+.gh-link:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+/* Only the icon for the active theme shows; the other is folded away. The root carries no
+   data-theme in auto mode, so the fallback is the moon (offer dark) unless the OS is dark. */
+.theme-toggle .icon-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-dark { display: inline-flex; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-light { display: none; }
+}
+:root[data-theme="dark"] .theme-toggle .icon-dark { display: inline-flex; }
+:root[data-theme="dark"] .theme-toggle .icon-light { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-dark { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-light { display: inline-flex; }
+
+/* Centred, not left-pinned. The cap has been here since the map landed but nothing ever
+   centred it, so every window wider than the column left a growing empty margin down the
+   right-hand side while the page crushed itself against the left edge. */
+main {
+  padding: 1.5rem;
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+.view.hidden { display: none; }
+
+.lede { margin: 0; color: var(--muted); max-width: 60ch; }
+h2 { font-size: 0.9rem; margin: 1.6rem 0 0.6rem; }
+
+.stack-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.3rem;
+}
+
+.stack-actions { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+
+/* The filter sits with the list it narrows, not in the header: it is about finding a
+   version among dozens, not about what the map is showing. */
+.section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter {
+  font: inherit;
+  font-size: 0.82rem;
+  font-family: var(--mono);
+  padding: 0.32rem 0.6rem;
+  min-width: 14rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--edge);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.filter:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; }
+
+/* Whether the data is still moving, not just how old it is. A failing background refresh
+   used to be visible only to whoever could read the logs on the box. */
+.stale-flag,
+.refresh-flag {
+  font: inherit;
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  margin-left: 0.7rem;
+  padding: 0 0.35rem;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  background: none;
+  cursor: pointer;
+}
+
+.stale-flag { color: var(--eos); background: var(--eos-soft); }
+.refresh-flag { color: var(--faint); border-color: var(--edge); }
+
+.refresh-log {
+  margin: 0.7rem 0 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 0.76rem;
+}
+
+.refresh-log.hidden { display: none; }
+.refresh-log h2 { margin: 0 0 0.4rem; font-size: 0.72rem; }
+.refresh-log ul { margin: 0; padding-left: 1rem; font-family: var(--mono); }
+.refresh-log li.failed { color: var(--eos); }
+.refresh-log li.ok { color: var(--muted); }
+.refresh-log .when { margin-right: 0.6rem; color: var(--faint); }
+.refresh-log .note { margin: 0.5rem 0 0; color: var(--muted); font-family: inherit; }
+
+.offscreen { position: fixed; left: -9999px; top: 0; opacity: 0; }
+
+.pin-label {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--signal);
+}
+
+button.ghost {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--hair);
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+button.ghost:hover { color: var(--ink); border-color: var(--muted); }
+
+/* The generation picker reads as one control with a chosen segment, rather than as three
+   loose buttons: the choices are exclusive and one of them is always in force. */
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.segmented .segment {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.7rem;
+  border: 0;
+  border-right: 1px solid var(--hair);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.segmented .segment:last-child { border-right: 0; }
+.segmented .segment:hover { color: var(--ink); }
+
+.segmented .segment.is-active {
+  background: var(--signal);
+  color: var(--on-accent);
+}
+
+.segmented .segment:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: -2px;
+}
+
+/* ---- the strata -------------------------------------------------------- */
+
+.strata {
+  display: flex;
+  flex-direction: column-reverse; /* bottom-up: vCenter is the foundation */
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--hair);
+}
+
+.strata > .layer:last-child { border-top: 0; } /* visually the bottom row */
+
+.layer-spine { padding-top: 0.15rem; }
+
+.layer-name {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* The count is the point of the whole view: watch it narrow as you pin. */
+.layer-count {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--faint);
+  margin-top: 0.15rem;
+}
+
+.layer-count .narrowed { color: var(--signal); font-weight: 600; }
+
+.layer-nodes { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+
+/* Optional layers — NSX and Avi. Neither is in every deployment, so they start closed
+   and read as an offer rather than as part of the stack. Each opens on its own: there is
+   no styling here that couples one to the other. */
+.layer.is-optional { border-left: 3px solid transparent; }
+.layer.is-optional.is-closed {
+  background: color-mix(in srgb, var(--panel) 92%, var(--muted));
+  border-left-color: var(--hair);
+}
+.layer.is-optional.is-closed .layer-name,
+.layer.is-optional.is-closed .layer-count { opacity: 0.62; }
+
+.layer-note {
+  font-size: 0.74rem;
+  color: var(--faint);
+  font-style: italic;
+}
+
+.layer-toggle { margin-left: 0; }
+
+.node {
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  padding: 0.32rem 0.6rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--hair);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: opacity var(--step) ease, border-color var(--step) ease,
+              background-color var(--step) ease, color var(--step) ease;
+}
+
+.node:hover { border-color: var(--muted); }
+
+.node:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.node .detail {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--faint);
+  margin-top: 0.1rem;
+}
+
+/* Off the path: present but receded, so the shape of the answer is unmistakable. Receded,
+   though, not concealed — a node off the load path is still a node whose version someone
+   has to be able to read, and the floor here is the opacity at which --ink still clears
+   4.5:1 against --surface. The path itself is carried by .node.lit's fill and border
+   below, which is the louder cue anyway, so nothing is lost by not dimming harder. */
+.node.dim { opacity: 0.55; }
+.node.dim:hover { opacity: 0.75; }
+
+.node.lit {
+  border-color: var(--signal);
+  background: var(--signal-soft);
+  color: var(--ink);
+}
+
+.node.pinned {
+  border-color: var(--signal);
+  border-width: 2px;
+  background: var(--signal);
+  color: var(--on-accent);
+}
+
+.node.pinned .detail { color: color-mix(in srgb, var(--on-accent) 78%, transparent); }
+
+.node.picked { border-color: var(--pick); background: var(--pick-soft); }
+
+.node.nodata {
+  border-style: dashed;
+  color: var(--faint);
+}
+
+/* ---- grouped node: a real dropdown -------------------------------------- */
+/*
+ * A grouped node's badges (train, lifecycle, provenance) can't live inside <option> text,
+ * so a <select> alone can't hold them the way a plain <button> holds its badges as
+ * children. The wrapper is what puts them back in the same box instead of loose in the
+ * row: it carries the node's own classes — .node plus whatever state applies — so it
+ * picks up the exact same pill chrome and pinned/lit/dim colouring .node already has,
+ * and the select inside it goes bare, right down to that state's colour, so the two read
+ * as one thing. A badge floating in the gap between unrelated nodes, with nothing to say
+ * which one it belonged to, was the "odd place" a reader ran into.
+ */
+.node-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: default;
+}
+
+/* Deliberately not appearance: none on the select — the browser's own dropdown chevron
+   is what makes "this opens a list" legible at a glance. The rest of its chrome is given
+   up on purpose: the wrapper already carries the border, background and padding a plain
+   .node has, and a second box inside the first would just be the old double-badge
+   problem wearing a border this time. */
+.node-select {
+  font: inherit; /* no longer shares .node's class to inherit this the ordinary way */
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 0 1.1rem 0 0;
+  margin: 0;
+  max-width: 9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.node-select:focus-visible { outline-offset: 1px; }
+
+/* ---- recommended stack ------------------------------------------------- */
+
+.recommended {
+  margin-top: 1.1rem;
+  border: 1px solid var(--hair);
+  border-left: 3px solid var(--pick);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 0.9rem 1.1rem;
+}
+
+.recommended h2 { margin: 0 0 0.6rem; }
+
+/* A two-column table, one layer per row, top-down like the map. Each label sits
+   next to its version so no viewport can wrap the pair apart. */
+.recommended table {
+  border-collapse: collapse;
+  margin: 0;
+  width: 100%;
+}
+
+.recommended th[scope="row"] {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  padding: 0.25rem 1.2rem 0.25rem 0;
+  vertical-align: baseline;
+}
+
+.recommended td {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+  vertical-align: baseline;
+  width: 100%;
+}
+
+/* The solver reaches past the legacy filter, so a recommendation can name a release the
+   map is hiding. It is coloured like the node would have been, and says so in words. */
+.recommended td.phase-technical-guidance { color: var(--tg); }
+.recommended td.phase-end-of-support { color: var(--eos); }
+
+.recommended .note {
+  display: block;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--faint);
+}
+
+.provenance-summary {
+  margin: 0.75rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--hair);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.recommended .footnote-line { margin: 0.35rem 0 0; color: var(--warn); font-style: normal; }
+
+/* The decision has to leave the screen: into a change ticket, a maintenance plan, and the
+   hands of whoever runs the upgrade weeks later. */
+.manifest-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--hair);
+}
+
+button.ghost.inline { margin-left: 0.6rem; }
+
+/* Printing is the cheapest export there is: a change board wants a page, not a browser. */
+@media print {
+  .masthead nav, .gh-link, .theme-toggle, .stack-actions, .manifest-actions, .legend,
+  #strata, #peek, #view-usage, .refresh-log, .map-controls,
+  .section-head .filter { display: none !important; }
+  /* Printing is for the record, so it prints the record whichever tab is open. */
+  #view-stack.hidden { display: block !important; }
+  .recommended { border: 1px solid #999; break-inside: avoid; }
+  body { color: #000; background: #fff; }
+  .map-svg { max-width: 100%; }
+}
+
+.footnote {
+  margin-top: 1.1rem;
+  font-size: 0.78rem;
+  color: var(--faint);
+  max-width: 78ch;
+}
+
+/* ---- peek popover ------------------------------------------------------ */
+
+.peek {
+  position: fixed;
+  z-index: 20;
+  max-width: 22rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--hair);
+  background: var(--panel);
+  box-shadow: 0 10px 26px rgba(var(--shadow), 0.16);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  pointer-events: none;
+}
+
+.peek .peek-title,
+.peek-rail .peek-title {
+  font-family: inherit;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+/* Shift-click keeps the popover open. Locked, it takes the pointer back so its contents
+   can be read, selected and copied — the exact builds and the upstream caveats are worth
+   more than a tooltip that dies when the mouse moves. */
+.peek.is-locked {
+  pointer-events: auto;
+  user-select: text;
+  max-height: 70vh;
+  overflow-y: auto;
+  border-color: var(--signal);
+  box-shadow: 0 12px 30px rgba(var(--shadow), 0.24);
+}
+
+.peek-hint {
+  float: right;
+  margin-left: 0.8rem;
+  font-weight: 400;
+  font-size: 0.66rem;
+  color: var(--faint);
+}
+
+.peek-actions { margin-top: 0.5rem; }
+
+/* What a node means, as opposed to which releases it covers. Never truncated: the release
+   list is what gets cut when the popover runs out of room. */
+.peek .peek-head,
+.peek-rail .peek-head {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+
+.peek.hidden { display: none; }
+
+/* Each build in a grouped node's release list is its own pin target — click one to pin
+   that exact build instead of the node's reachScore-picked default. Block-level and
+   full-width so the whole row is the click target, not just the text. */
+.peek-release {
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: 0.05rem 0.3rem;
+  margin: 0 -0.3rem;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.peek-release:hover,
+.peek-release:focus-visible {
+  background: var(--signal-soft);
+  outline: none;
+}
+.peek-release.is-active {
+  color: var(--signal);
+  font-weight: 700;
+}
+
+/* ---- the detail rail ---------------------------------------------------- */
+
+/* Below the breakpoint there is no column to spare, so the rail collapses and the
+   floating popover above does the work. app.js watches the same width. */
+.map-with-rail { display: block; }
+.peek-rail { display: none; }
+
+@media (min-width: 62rem) {
+  .map-with-rail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: 1rem;
+    align-items: start;
+  }
+  /* Outside the frame, so it never covers the connection a hover is tracing. Sticky, so
+     it stays in view on a map tall enough to scroll. */
+  .peek-rail {
+    display: block;
+    position: sticky;
+    top: 1rem;
+    /* Capped to the map's own rendered height (--map-h, set by syncRailHeight in app.js),
+       not the viewport. A sticky child's box still counts toward its grid row's height —
+       uncapped, a long release list made the rail taller than the map beside it, and the
+       row grew with it, dragging the strata list far down the page under a pointer that
+       never moved. The viewport term is only the fallback before JS runs. */
+    max-height: clamp(16rem, var(--map-h, 100vh), calc(100vh - 2rem));
+    overflow-y: auto;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    background: var(--panel);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    line-height: 1.45;
+    user-select: text;
+  }
+}
+
+.peek-rail-empty {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: var(--faint);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ---- shared ------------------------------------------------------------ */
+
+.error {
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.86rem;
+  background: var(--panel);
+  border: 1px solid var(--warn);
+  color: var(--warn);
+}
+
+.hidden { display: none; }
+
+@media (max-width: 640px) {
+  .layer { grid-template-columns: 1fr; gap: 0.5rem; }
+  main { padding: 1rem; }
+}
+
+/* ---- usage -------------------------------------------------------------- */
+
+.usage-note {
+  margin: 0.6rem 0 0;
+  max-width: 74ch;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.usage-note code, .usage-commands code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  color: var(--ink);
+}
+
+/* The snippet is the point of the tab, so the button sits on it rather than beside it —
+   close enough that the thing being copied is never ambiguous. */
+.snippet {
+  position: relative;
+  margin-top: 0.7rem;
+  max-width: 74ch;
+}
+
+.snippet pre {
+  margin: 0;
+  padding: 0.75rem 5rem 0.75rem 0.9rem;
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.snippet .copy {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+}
+
+.usage-commands {
+  margin: 0.6rem 0 0;
+  max-width: 78ch;
+  font-size: 0.86rem;
+}
+
+.usage-commands dt {
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.usage-commands dd { margin: 0.15rem 0 0; color: var(--muted); }
+
+.usage-out {
+  margin-top: 1.8rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--hair);
+  font-size: 0.82rem;
+  color: var(--faint);
+}
+
+.usage-out a { color: var(--muted); }
+.usage-out a:hover { color: var(--ink); }
+
+/* ---- the map ----------------------------------------------------------- */
+
+.map-frame {
+  margin: 0 0 1.8rem;
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 0.5rem 0.5rem 0.75rem;
+}
+
+/* No overflow scrolling: the map pans. A scrollbar and a drag gesture are two ways to do
+   one thing, and the scrollbar is the one that cannot show you a wide row at a glance. */
+.map { outline-offset: 3px; }
+
+.map-svg { display: block; touch-action: none; }
+.map-svg.is-pannable { cursor: grab; }
+.map-svg.is-panning { cursor: grabbing; }
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.map-controls .ghost {
+  padding: 0.15rem 0.5rem;
+  min-width: 2rem;
+}
+
+.map-controls .ghost:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.map-zoom-level {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-left: 0.2rem;
+  min-width: 3rem;
+}
+
+/* Off-screen but readable: the map's keyboard controls have to be announced somewhere,
+   and the visible buttons beside them do not say what the arrow keys do. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.map-empty {
+  margin: 0;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--faint);
+  font-size: 0.88rem;
+}
+
+/* "Nothing selected yet" and "this selection has no stack" both used to draw an empty
+   frame. The second is an answer and has to look like one. */
+.map-empty.is-dead-end {
+  color: var(--eos);
+  background: var(--eos-soft);
+  border-radius: var(--radius);
+}
+
+.map-caption {
+  padding: 0.4rem 0.7rem 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--faint);
+}
+
+.map-layer-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  fill: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.map-link {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 1.4;
+  opacity: 0.42;
+}
+
+/* A connection carries the matrix's own confidence. Solid is a tested yes; dashed is
+   "compatible, not tested"; dotted is a pair upstream never evaluated, drawn because a
+   stack exists rather than because anything was looked up. Drawing all three the same
+   let the picture claim more than the data. */
+.map-link.is-untested {
+  stroke-dasharray: 6 3;
+  opacity: 0.5;
+}
+
+.map-link.is-unverified {
+  stroke-dasharray: 1.5 3.5;
+  stroke: var(--muted);
+  opacity: 0.62;
+}
+
+/* ---- tracing one connection -------------------------------------------- */
+
+/* The stroke is the hit area in SVG, and a 1.4px stroke is not something anyone can
+   point at. Every connection carries a fat invisible twin that takes the pointer. */
+.map-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 14;
+  pointer-events: stroke;
+  cursor: default;
+}
+
+/* While one connection is being traced, the rest of the map steps back rather than
+   disappearing: the context is still worth seeing, just not competing. */
+.map-svg.is-tracing .map-edge:not(.is-hot, .is-leaving) { opacity: 0.16; }
+.map-svg.is-tracing .map-node:not(.is-traced, .is-leaving) { opacity: 0.3; }
+
+.map-edge { transition: opacity var(--step) ease; }
+
+.map-edge.is-hot .map-link {
+  opacity: 1;
+  stroke-width: 2.6;
+}
+
+/* The two releases the connection is about, named at both ends, so a curve that crosses
+   others can still be followed to what it connects. */
+.map-node.is-traced .map-node-box {
+  stroke-width: 2.2;
+  filter: drop-shadow(0 0 3px var(--signal));
+}
+
+/* The map is reconciled rather than rebuilt, so these transitions finally have something
+   to animate. Position lives on the group's transform: one animatable property instead of
+   a coordinate rewrite on every child. */
+.map-node {
+  cursor: pointer;
+  transition: transform var(--step) ease, opacity var(--step) ease;
+}
+
+/* Re-centring jitter of a node nobody touched snaps instead of sliding, so motion on the
+   map always means something actually changed. */
+.map-node.is-static { transition: opacity var(--step) ease; }
+
+.map-node.is-entering,
+.map-edge.is-entering { opacity: 0; }
+
+.map-node.is-leaving,
+.map-edge.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.map-link { transition: opacity var(--step) ease, stroke-width var(--step) ease, d var(--step) ease; }
+
+/* A solve is in flight: keep the previous answer legible instead of blanking the frame,
+   which reads as a broken tool on a slow connection. */
+.map.is-solving .map-svg {
+  opacity: 0.45;
+  transition: opacity 120ms ease 90ms;
+}
+
+.map.is-solving { cursor: progress; }
+
+@media (prefers-reduced-motion: reduce) {
+  .map-node, .map-link, .map-edge, .map.is-solving .map-svg { transition: none; }
+}
+
+.map-node .map-node-box {
+  fill: var(--signal-soft);
+  stroke: var(--signal);
+  stroke-width: 1.4;
+  transition: fill var(--step) ease;
+}
+
+.map-node .map-node-text {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  fill: var(--ink);
+}
+
+.map-node:hover .map-node-box { fill: var(--panel); }
+
+.map-node:focus-visible { outline: none; }
+.map-node:focus-visible .map-node-box { stroke-width: 3; }
+
+.map-node.is-pinned .map-node-box { fill: var(--signal); stroke: var(--signal); }
+.map-node.is-pinned .map-node-text { fill: var(--on-accent); }
+
+.map-node.is-picked .map-node-box { stroke: var(--pick); stroke-width: 2.2; fill: var(--pick-soft); }
+
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.25rem;
+}
+
+.section-note {
+  margin: 0 0 0.7rem;
+  font-size: 0.8rem;
+  color: var(--faint);
+}
+
+/* Supervisor ships two trains at the same Kubernetes version and they are not
+   interchangeable, so the train is always visible on the node rather than buried. */
+.node .train {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0 0.28rem;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  vertical-align: 0.08em;
+  opacity: 0.85;
+}
+
+.map-node-train {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  fill: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.map-node.is-pinned .map-node-train { fill: color-mix(in srgb, var(--on-accent) 82%, transparent); }
+
+/* ---- the explainer ----------------------------------------------------- */
+
+/* Every claim shows its provenance, so an asserted rule never reads like a lookup. */
+.evidence {
+  display: inline-block;
+  margin: 0 0.45rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid currentColor;
+}
+
+.evidence.known { color: var(--pick); }
+.evidence.unknown { color: var(--warn); }
+
+.callout {
+  margin: 1rem 0;
+  padding: 0.85rem 1.05rem;
+  border: 1px solid var(--hair);
+  border-left: 3px solid var(--signal);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.callout h3 { margin: 0 0 0.35rem; font-size: 0.9rem; }
+.callout p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+.callout code { font-family: var(--mono); color: var(--ink); }
+
+.unknown {
+  margin-bottom: 0.8rem;
+  padding: 0.85rem 1.05rem;
+  border: 1px solid var(--hair);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.unknown h3 { margin: 0 0 0.4rem; font-size: 0.9rem; }
+.unknown p { margin: 0 0 0.4rem; font-size: 0.88rem; color: var(--muted); max-width: 76ch; }
+.unknown p:last-child { margin-bottom: 0; }
+.unknown strong { color: var(--ink); }
+
+
+/* ---- support lifecycle ------------------------------------------------- */
+
+/* The matrix publishes a support phase per release. "Legacy" here means exactly what it
+   means on the interop site: nothing left in General Support. */
+
+.node.phase-technical-guidance {
+  border-color: var(--tg);
+  background: var(--tg-soft);
+}
+
+.node.phase-end-of-support {
+  border-color: var(--eos);
+  background: var(--eos-soft);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--eos) 55%, transparent);
+}
+
+.phase-tag {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0 0.26rem;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  vertical-align: 0.1em;
+  text-decoration: none;
+  color: var(--on-accent);
+}
+
+.phase-tag.phase-technical-guidance { background: var(--tg); }
+.phase-tag.phase-end-of-support { background: var(--eos); }
+
+/* A grouped line keeps its best phase as its headline — it is still usable — but when the
+   builds behind it disagree, the worst one is named too. Outlined rather than filled, so
+   it reads as a qualification of the node and not as the node's own phase. */
+.phase-tag.is-mixed {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+
+.phase-tag.phase-technical-guidance.is-mixed { color: var(--tg); }
+.phase-tag.phase-end-of-support.is-mixed { color: var(--eos); }
+
+.map-node.is-technical-guidance .map-node-box { stroke: var(--tg); fill: var(--tg-soft); }
+.map-node.is-end-of-support .map-node-box { stroke: var(--eos); fill: var(--eos-soft); }
+
+/* Provenance, on the node itself. "not tested" is upstream's own hedge on a yes;
+   "inferred" means no upstream result exists for a pair the stack depends on.
+   These are critical caveats, but written out on the node they were the wrong size for
+   the job: on a generation where an inferred Supervisor-to-VKr edge touches nearly every
+   VKr and VKS release, a worded pill lands on almost every box and stops reading as a
+   flag at all — it becomes texture as loud as the version numbers themselves. On the
+   node the marker's whole job is "this one has a caveat, and which kind"; the wording
+   lives in the caveats panel below the layers, where it can be read as prose and where
+   two dozen of them are a list rather than noise smeared across five rows. */
+.prov-tag {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-left: 0.34rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 0.09em;
+  /* The wording still ships in the markup for screen readers; it is only the sighted
+     rendering that collapses to a dot, so the caveat is never *only* a colour. */
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+.prov-tag.is-untested { color: var(--tg); }
+.prov-tag.is-unverified { color: var(--muted); }
+.prov-tag.is-footnote { color: var(--warn); }
+
+/* Hollow, so "inferred" — no upstream result at all — is distinguishable from the two
+   filled markers without relying on its grey being told apart from an amber and a rust. */
+.prov-tag.is-unverified {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+/* On a pinned node every marker sits on the solid accent fill, where --tg and --warn are
+   an unchosen colour-on-colour pair. Same fix as .detail and the phase tags: hand them
+   the foreground the fill was designed to carry. Shape still separates them. */
+.node.pinned .prov-tag { color: var(--on-accent); }
+
+.map-node.is-untested .map-node-box { stroke-dasharray: 6 3; }
+.map-node.is-unverified .map-node-box { stroke-dasharray: 1.5 3.5; }
+
+/* ---- the caveats panel -------------------------------------------------- */
+
+/* Where the markers above are written out. Same swatch shapes as the nodes carry, so the
+   dot on a version and the row explaining it are visibly the same thing. */
+.caveats {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--hair);
+  border-left: 3px solid var(--tg);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.caveats.hidden { display: none; }
+.caveats .section-label { margin: 0 0 0.7rem; }
+
+.caveat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--hair);
+}
+.caveats .caveat:first-of-type { border-top: 0; padding-top: 0; }
+
+/* The swatch keeps .prov-tag's dot rendering; it is the same marker, at the head of the
+   row that explains it. margin-left there is for sitting after a version label, which is
+   not what it is doing here. */
+.caveat .prov-tag { margin-left: 0; margin-top: 0.34rem; flex: none; }
+
+.caveat-head {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.caveat-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  max-width: 78ch;
+}
+
+/* The versions carrying it. Monospace and quiet: this is a list to scan for a name you
+   already have in mind, not prose to read through. */
+.caveat-versions {
+  margin-top: 0.25rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--faint);
+  line-height: 1.6;
+}
+
+.hidden-count {
+  align-self: center;
+  font-size: 0.72rem;
+  color: var(--faint);
+  font-style: italic;
+}
+
+.toggle {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.legend li { display: flex; align-items: center; gap: 0.4rem; }
+
+/* One block per channel — box, line, dot. Grouped because the three say different kinds
+   of thing about the same node, and a flat list of nine entries invites reading a line
+   style as a fill.
+
+   The three sit side by side wherever they fit and fall back to stacking when they do
+   not. Stacked unconditionally they were three short rows hugging the left edge of a
+   page much wider than any of them — the key taking three bands of vertical space to say
+   what fits comfortably on one. */
+.legend-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.legend-group { margin: 0; }
+
+.legend-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* A length of the connection itself, drawn with the same strokes the map uses: solid,
+   long-dashed for untested, finely dotted for inferred. Sized to read as a line rather
+   than as a very flat box. */
+.rule {
+  width: 1.6rem;
+  height: 0;
+  flex: none;
+  border-top: 2px solid var(--signal);
+  opacity: 0.75;
+}
+
+.rule-untested { border-top-style: dashed; border-top-color: var(--tg); }
+.rule-unverified { border-top-style: dotted; border-top-color: var(--muted); }
+
+/* The dot markers carry their wording in the list item beside them here, so the
+   text-indent that hides their own label on a node would only leave a gap. */
+.legend .prov-tag { margin-left: 0; text-indent: 0; }
+
+.swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  border: 1px solid var(--hair);
+  display: inline-block;
+}
+
+.sw-general { background: var(--signal-soft); border-color: var(--signal); }
+.sw-tg { background: var(--tg-soft); border-color: var(--tg); }
+.sw-eos { background: var(--eos-soft); border-color: var(--eos); }
+
+/* Lifecycle is a fill; provenance is a stroke. Keeping the two channels apart is what
+   lets a node say "supported" and "not tested" at the same time without ambiguity —
+   provenance is now shown as the line and dot it actually is on the map (.rule and
+   .prov-tag above), so only the lifecycle swatches are boxes. */
+.sw-mixed { background: transparent; border-color: var(--eos); border-style: dashed; }
+
+/* The reason a selection reaches no stack. The map showing nothing is not an answer;
+   this is. */
+.dead-end-reason {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}

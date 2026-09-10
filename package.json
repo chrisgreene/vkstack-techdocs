@@ -1,0 +1,16 @@
+{
+  "name": "vkstack-techdocs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Broadcom TechDocs-themed reimplementation of the vkstack compatibility map (unofficial)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "fetch-data": "node scripts/fetch-data.mjs"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vkstack — VKS stack compatibility map</title>
+  <meta name="description" content="Unofficial VMware / Broadcom stack compatibility map for vCenter, Supervisor, VKS, and VKr. Not affiliated with Broadcom.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>
+    try {
+      var t = localStorage.getItem("vkstack.theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      else document.documentElement.setAttribute("data-theme", "light");
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="./">
+        <span class="brand-mark">TechDocs</span>
+        <span class="brand-sep" aria-hidden="true">/</span>
+        <span class="brand-product">vkstack</span>
+      </a>
+      <div class="header-actions">
+        <a class="header-link" href="https://interopmatrix.broadcom.com" target="_blank" rel="noopener">Interop Matrix</a>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+                aria-label="Switch to dark theme" title="Switch theme">
+          <span class="icon-light" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="18" height="18" focusable="false">
+              <path fill="currentColor" d="M6 .8a6.5 6.5 0 1 0 9.2 8.2A5.2 5.2 0 0 1 6 .8Z"/>
+            </svg>
+          </span>
+          <span class="icon-dark" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="18" height="18" focusable="false">
+              <path fill="currentColor" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0-4v2.2M8 13.8V16M0 8h2.2M13.8 8H16M2.3 2.3l1.6 1.6M12.1 12.1l1.6 1.6M13.7 2.3l-1.6 1.6M3.9 12.1l-1.6 1.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+            </svg>
+          </span>
+        </button>
+        <a class="gh-link" href="https://github.com/chrisgreene/vkstack-techdocs" rel="noopener"
+           aria-label="vkstack-techdocs on GitHub" title="GitHub">
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="header-gradient" aria-hidden="true"></div>
+  </header>
+
+  <main class="page">
+    <header class="page-intro">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="https://techdocs.broadcom.com/" target="_blank" rel="noopener">TechDocs</a></li>
+          <li>vkstack</li>
+          <li>Compatibility map</li>
+        </ol>
+      </nav>
+      <h1>vkstack — the VKS stack, layer by layer</h1>
+      <p class="lede">
+        Pick a version at any layer. Everything that can be in the same working stack
+        stays lit; everything that cannot fades back. Hover a connection, or a version
+        in the map, to trace what it joins.
+      </p>
+    </header>
+
+    <header class="masthead">
+      <div class="masthead-row">
+        <h1>vkstack</h1>
+        <nav id="tabs">
+          <button data-view="stack" class="active" type="button">The stack</button>
+          <button data-view="usage" type="button">Usage</button>
+        </nav>
+      </div>
+      <p id="meta" class="meta"></p>
+      <p class="disclaimer">
+        <strong>Unofficial.</strong> Not affiliated with or endorsed by Broadcom.
+        Compatibility data is derived from the same undocumented endpoint the
+        interoperability matrix website calls, and can change or stop working without notice.
+        The matrix itself is the authority — verify anything you rely on at
+        <a href="https://interopmatrix.broadcom.com" rel="noopener">interopmatrix.broadcom.com</a>.
+        This UI is a TechDocs-styled reimplementation of
+        <a href="https://vkstack.warroyo.com" rel="noopener">vkstack</a> by warroyo.
+      </p>
+      <section id="refresh-log" class="refresh-log hidden"></section>
+    </header>
+
+    <section id="view-stack" class="view">
+      <div class="stack-head">
+        <p class="lede" id="stack-lede" hidden>
+          Pick a version at any layer.
+        </p>
+        <div class="stack-actions">
+          <div id="generations" class="segmented" role="group" aria-label="Platform generation"></div>
+          <label class="toggle">
+            <input type="checkbox" id="hide-legacy" checked>
+            Hide legacy releases
+          </label>
+          <span id="pin-label" class="pin-label"></span>
+          <button id="clear-pin" class="ghost hidden" type="button">Clear</button>
+          <button id="copy-link" class="ghost" type="button" title="Copy a link to exactly this view">Copy link</button>
+          <button id="save-stack" class="ghost hidden" type="button">Save as my stack</button>
+        </div>
+      </div>
+
+      <div id="stack-error" class="error hidden"></div>
+
+      <div class="map-with-rail">
+        <figure class="map-frame">
+          <div id="map" class="map" role="group" tabindex="0"
+               aria-labelledby="map-caption"
+               aria-describedby="map-controls-help"></div>
+          <div id="map-controls" class="map-controls" hidden>
+            <span id="map-controls-help" class="visually-hidden">
+              Arrow keys pan the map. Plus and minus zoom. Zero resets.
+            </span>
+            <button type="button" id="map-zoom-out" class="ghost" title="Zoom out">&minus;</button>
+            <button type="button" id="map-zoom-in" class="ghost" title="Zoom in">+</button>
+            <button type="button" id="map-fit" class="ghost" title="Fit the whole map">Fit</button>
+            <button type="button" id="map-reset" class="ghost" title="Back to full size">Reset</button>
+            <span id="map-zoom-level" class="map-zoom-level" aria-live="polite"></span>
+          </div>
+          <figcaption id="map-caption" class="map-caption"></figcaption>
+        </figure>
+        <aside id="peek-rail" class="peek-rail" aria-live="polite"></aside>
+      </div>
+
+      <div class="legend-groups">
+        <div class="legend-group">
+          <p class="legend-title">Versions</p>
+          <ul class="legend">
+            <li><span class="swatch sw-general"></span>General Support</li>
+            <li><span class="swatch sw-tg"></span>Technical Guidance — no new fixes</li>
+            <li><span class="swatch sw-eos"></span>End of Support</li>
+            <li><span class="swatch sw-mixed"></span>grouped line with older builds out of support</li>
+          </ul>
+        </div>
+        <div class="legend-group">
+          <p class="legend-title">Connections</p>
+          <ul class="legend">
+            <li><span class="rule rule-verified"></span>verified compatible upstream</li>
+            <li><span class="rule rule-untested"></span>listed compatible, not tested upstream</li>
+            <li><span class="rule rule-unverified"></span>never evaluated upstream — inferred</li>
+          </ul>
+        </div>
+        <div class="legend-group">
+          <p class="legend-title">Marks on a version</p>
+          <ul class="legend">
+            <li><span class="prov-tag is-untested"></span>listed compatible, not tested upstream</li>
+            <li><span class="prov-tag is-unverified"></span>never evaluated upstream — inferred</li>
+            <li><span class="prov-tag is-footnote"></span>upstream note — see the caveats below</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2 class="section-label">Every version, by layer</h2>
+          <p class="section-note">
+            Click any version to branch from it. Lit versions can be in a stack with your
+            selection; faded ones cannot.
+          </p>
+        </div>
+        <input type="search" id="filter" class="filter" placeholder="Filter versions…"
+               aria-label="Filter versions">
+      </div>
+
+      <div id="strata" class="strata" aria-label="Compatibility layers, bottom to top"></div>
+      <section id="caveats" class="caveats hidden" aria-label="Caveats on the versions above"></section>
+      <div id="recommended" class="recommended hidden"></div>
+
+      <p class="footnote">
+        Lit means a complete valid stack exists containing both that version and your
+        selection — not just that two products happen to list each other.
+        Supervisor, VKS and VKr are grouped by version line; vCenter is not, because its
+        patch letter changes what it supports. A grouped node stands for several releases
+        and clicking it selects the newest — hover to see which, and the rest.
+        Where the matrix hedges, so does the picture: dashed means upstream lists the
+        combination compatible without testing it, dotted means it published no result
+        for that pair at all and the connection is inferred from the rest of the stack.
+      </p>
+    </section>
+
+    <section id="view-usage" class="view hidden">
+      <p class="lede">
+        This page is a static, TechDocs-styled reimplementation of the interactive
+        <a href="https://vkstack.warroyo.com" rel="noopener">vkstack</a> map. The original
+        project also ships a CLI and MCP server for agents and automation.
+      </p>
+
+      <h2>Wire it into an agent</h2>
+      <p class="usage-note">
+        From the upstream project — any client that reads an
+        <code>mcpServers</code> object:
+      </p>
+      <div class="snippet">
+        <pre id="snip-mcp"><code>{
+  "mcpServers": {
+    "vkstack": {
+      "command": "npx",
+      "args": ["-y", "@warroyo90/vkstack-mcp", "mcp", "--refresh-if-empty"]
+    }
+  }
+}</code></pre>
+        <button class="ghost copy" data-copy="snip-mcp" type="button">Copy</button>
+      </div>
+
+      <p class="usage-note">Claude Code:</p>
+      <div class="snippet">
+        <pre id="snip-claude"><code>claude mcp add vkstack -- npx -y @warroyo90/vkstack-mcp mcp --refresh-if-empty</code></pre>
+        <button class="ghost copy" data-copy="snip-claude" type="button">Copy</button>
+      </div>
+
+      <h2>Or put the binary on your PATH</h2>
+      <div class="snippet">
+        <pre id="snip-install"><code>curl -fsSL https://raw.githubusercontent.com/warroyo/vkstack/main/install.sh | sh
+vkstack refresh</code></pre>
+        <button class="ghost copy" data-copy="snip-install" type="button">Copy</button>
+      </div>
+
+      <p class="usage-out">
+        <a href="https://github.com/warroyo/vkstack" rel="noopener">Upstream repository</a> ·
+        <a href="https://interopmatrix.broadcom.com" rel="noopener">Official Interop Matrix</a>
+      </p>
+    </section>
+  </main>
+
+  <div id="peek" class="peek hidden" role="tooltip"></div>
+
+  <footer class="site-footer">
+    <div class="footer-gradient" aria-hidden="true"></div>
+    <div class="site-footer-inner">
+      <p>
+        Unofficial TechDocs-styled UI. Not affiliated with Broadcom.
+        Compatibility answers come from cached interop-matrix data published by the
+        upstream <a href="https://github.com/warroyo/vkstack" rel="noopener">vkstack</a> project.
+        Always verify critical decisions against
+        <a href="https://interopmatrix.broadcom.com" rel="noopener">interopmatrix.broadcom.com</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

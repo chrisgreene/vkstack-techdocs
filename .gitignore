@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+# Optional-layer variants are large; fetch with `npm run fetch-data`.
+# Keep the committed core bundles.
+public/data-nsx*.json
+public/data-avi*.json
+public/data-tmc*.json
+!public/data.json
+!public/data-gen8.json
+!public/data-gen9.json
