@@ -2,11 +2,20 @@ node_modules/
 dist/
 .DS_Store
 *.log
-# Optional-layer variants are large; fetch with `npm run fetch-data`.
-# Keep the committed core bundles.
+
+# Optional-layer variants are large. Gen9 offline demos are vendored; other
+# combinations still CDN-fallback from https://vkstack.warroyo.com at runtime.
+# Refresh with: npm run fetch-data
 public/data-nsx*.json
 public/data-avi*.json
 public/data-tmc*.json
 !public/data.json
 !public/data-gen8.json
 !public/data-gen9.json
+!public/data-nsx-gen9.json
+!public/data-avi-gen9.json
+!public/data-tmc-gen9.json
+!public/data-nsx-avi-gen9.json
+!public/data-nsx-tmc-gen9.json
+!public/data-avi-tmc-gen9.json
+!public/data-nsx-avi-tmc-gen9.json
