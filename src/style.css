@@ -207,11 +207,11 @@ a:hover {
   font: inherit;
 }
 #tabs button.active {
-  color: var(--bc-sapphire);
-  border-bottom-color: var(--bc-sapphire);
+  color: var(--bc-slate-900);
+  border-bottom-color: var(--bc-red);
   font-weight: 600;
 }
-#tabs button:hover { color: var(--bc-sapphire-400); }
+#tabs button:hover { color: var(--bc-slate-700); }
 
 .disclaimer {
   background: var(--bc-slate-100);
@@ -228,27 +228,89 @@ a:hover {
   margin: 0.5rem 0 0;
 }
 
-/* Segmented control — sapphire active */
+/* Segmented control — quiet slate active (disclaimer palette) */
 .segmented .segment.is-active {
-  background: var(--bc-sapphire) !important;
+  background: var(--bc-slate-700) !important;
   color: #fff !important;
-  border-color: var(--bc-sapphire) !important;
+  border-color: var(--bc-slate-700) !important;
 }
-.pin-label { color: var(--bc-sapphire) !important; font-weight: 600; }
+.pin-label { color: var(--bc-slate-900) !important; font-weight: 600; }
 
-/* Map node accents already use --signal/--pick; reinforce pinned with red */
-.map-node.is-pinned .map-node-box {
-  fill: var(--bc-sapphire) !important;
-  stroke: var(--bc-sapphire) !important;
-}
-.map-node.is-picked .map-node-box {
-  stroke: var(--bc-purple) !important;
-}
+/*
+ * Map chrome like the unofficial disclaimer callout:
+ * grey/white fills, dark text, black connectors, red border on the selection.
+ */
 .map-link {
-  stroke: var(--bc-sapphire) !important;
+  stroke: var(--bc-slate-900) !important;
+}
+.map-link.is-unverified {
+  stroke: var(--bc-slate-600) !important;
 }
 .map-edge.is-hot .map-link {
+  stroke: var(--bc-slate-900) !important;
+}
+.map-node .map-node-box {
+  fill: var(--bc-slate-100) !important;
+  stroke: var(--bc-slate-600) !important;
+}
+.map-node .map-node-text {
+  fill: var(--bc-slate-900) !important;
+}
+.map-node:hover .map-node-box {
+  fill: #FFFFFF !important;
+  stroke: var(--bc-slate-900) !important;
+}
+.map-node.is-pinned .map-node-box {
+  fill: var(--bc-slate-100) !important;
   stroke: var(--bc-red) !important;
+  stroke-width: 2.4px !important;
+}
+.map-node.is-pinned .map-node-text {
+  fill: var(--bc-slate-900) !important;
+}
+.map-node.is-pinned .map-node-train {
+  fill: var(--bc-slate-600) !important;
+}
+.map-node.is-picked .map-node-box {
+  fill: var(--bc-slate-100) !important;
+  stroke: var(--bc-slate-900) !important;
+  stroke-width: 2px !important;
+}
+.map-node.is-traced .map-node-box {
+  filter: none !important;
+  stroke: var(--bc-red) !important;
+}
+/* Lifecycle tints stay readable but keep grey fill base */
+.map-node.is-technical-guidance .map-node-box {
+  fill: var(--tg-soft) !important;
+  stroke: var(--tg) !important;
+}
+.map-node.is-end-of-support .map-node-box {
+  fill: var(--eos-soft) !important;
+  stroke: var(--eos) !important;
+}
+.map-node.is-pinned.is-technical-guidance .map-node-box,
+.map-node.is-pinned.is-end-of-support .map-node-box {
+  stroke: var(--bc-red) !important;
+  fill: var(--bc-slate-100) !important;
+}
+
+/* List/pill nodes under "Every version" match the same callout look */
+.node.lit {
+  border-color: var(--bc-slate-600) !important;
+  background: var(--bc-slate-100) !important;
+  color: var(--bc-slate-900) !important;
+}
+.node.pinned {
+  border-color: var(--bc-red) !important;
+  border-width: 2px !important;
+  background: var(--bc-slate-100) !important;
+  color: var(--bc-slate-900) !important;
+}
+.node.pinned .detail { color: var(--bc-slate-600) !important; }
+.node.picked {
+  border-color: var(--bc-slate-900) !important;
+  background: var(--bc-slate-100) !important;
 }
 
 main.page {
@@ -300,11 +362,11 @@ main.page {
      bounds a control — an input, a button — uses --edge instead, which clears it. */
   --edge: rgba(0, 0, 0, 0.175);
 
-  /* Broadcom TechDocs accents: sapphire lit path, purple recommended, red emphasis. */
-  --signal: #005C8A;
-  --signal-soft: #E5F2F7;
-  --pick: #6C4B94;
-  --pick-soft: #F0EAF6;
+  /* Disclaimer-like accents: slate path, near-black connectors, red selection. */
+  --signal: #32344A;
+  --signal-soft: #F5F5F6;
+  --pick: #1B1D36;
+  --pick-soft: #E8E8EB;
   --warn: #CC092F;
   /* Support lifecycle. Amber for Technical Guidance, muted red for End of Support —
      both quieter than the indigo path so they qualify a node without competing with it. */
@@ -354,10 +416,10 @@ main.page {
     --hair: #2a3441;
     --edge: #5f6d7f;
 
-    --signal: #4CA3C7;
-    --signal-soft: #0A2A3A;
-    --pick: #9B7EBF;
-    --pick-soft: #2A1F3A;
+    --signal: #C8CAD4;
+    --signal-soft: #2A2C3E;
+    --pick: #E8E8EB;
+    --pick-soft: #32344A;
     --warn: #f0906a;
     --tg: #dda94a;
     --tg-soft: #33290f;
@@ -386,10 +448,10 @@ main.page {
   --hair: #2a3441;
   --edge: #5f6d7f;
 
-  --signal: #4CA3C7;
-  --signal-soft: #0A2A3A;
-  --pick: #9B7EBF;
-  --pick-soft: #2A1F3A;
+  --signal: #C8CAD4;
+  --signal-soft: #2A2C3E;
+  --pick: #E8E8EB;
+  --pick-soft: #32344A;
   --warn: #f0906a;
   --tg: #dda94a;
   --tg-soft: #33290f;
