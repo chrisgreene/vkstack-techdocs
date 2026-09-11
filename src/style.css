@@ -263,7 +263,7 @@ a:hover {
 .map-node.is-pinned .map-node-box {
   fill: var(--bc-slate-100) !important;
   stroke: var(--bc-red) !important;
-  stroke-width: 2.4px !important;
+  stroke-width: 1.75px !important;
 }
 .map-node.is-pinned .map-node-text {
   fill: var(--bc-slate-900) !important;
@@ -303,7 +303,7 @@ a:hover {
 }
 .node.pinned {
   border-color: var(--bc-red) !important;
-  border-width: 2px !important;
+  border-width: 1.5px !important;
   background: var(--bc-slate-100) !important;
   color: var(--bc-slate-900) !important;
 }
