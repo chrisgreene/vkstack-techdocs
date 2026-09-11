@@ -119,7 +119,9 @@ function bundleName(withKey, genKey) {
 }
 
 async function fetchBundle(name) {
-  const local = await fetch("/" + name);
+  // BASE_URL keeps project-pages / subpath deploys working (vite base is "./").
+  const base = import.meta.env.BASE_URL || "./";
+  const local = await fetch(base + name);
   if (local.ok) return local.json();
   // Fall back to upstream published bundles for optional-layer / gen variants.
   const remote = await fetch(`${DATA_CDN}/${name}`);

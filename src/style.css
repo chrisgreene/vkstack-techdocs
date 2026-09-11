@@ -162,12 +162,19 @@ a:hover {
   color: var(--bc-slate-500);
 }
 .page-intro h1 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.35rem;
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: -0.25px;
   color: var(--bc-emphasis);
+}
+.page-intro .page-subtitle {
+  margin: 0 0 0.65rem;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: var(--bc-slate-500);
 }
 .page-intro .lede {
   margin: 0;
@@ -668,7 +675,8 @@ h2 { font-size: 0.9rem; margin: 1.6rem 0 0.6rem; }
 .pin-label {
   font-family: var(--mono);
   font-size: 0.82rem;
-  color: var(--signal);
+  color: var(--bc-slate-900);
+  font-weight: 600;
 }
 
 button.ghost {
@@ -710,8 +718,9 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 .segmented .segment:hover { color: var(--ink); }
 
 .segmented .segment.is-active {
-  background: var(--signal);
-  color: var(--on-accent);
+  background: var(--bc-slate-700);
+  color: #fff;
+  border-color: var(--bc-slate-700);
 }
 
 .segmented .segment:focus-visible {
@@ -819,21 +828,24 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 .node.dim:hover { opacity: 0.75; }
 
 .node.lit {
-  border-color: var(--signal);
-  background: var(--signal-soft);
-  color: var(--ink);
+  border-color: var(--bc-slate-600);
+  background: var(--bc-slate-100);
+  color: var(--bc-slate-900);
 }
 
 .node.pinned {
-  border-color: var(--signal);
-  border-width: 2px;
-  background: var(--signal);
-  color: var(--on-accent);
+  border-color: var(--bc-red);
+  border-width: 1.5px;
+  background: var(--bc-slate-100);
+  color: var(--bc-slate-900);
 }
 
-.node.pinned .detail { color: color-mix(in srgb, var(--on-accent) 78%, transparent); }
+.node.pinned .detail { color: var(--bc-slate-600); }
 
-.node.picked { border-color: var(--pick); background: var(--pick-soft); }
+.node.picked {
+  border-color: var(--bc-slate-900);
+  background: var(--bc-slate-100);
+}
 
 .node.nodata {
   border-style: dashed;
@@ -881,11 +893,12 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 
 .recommended {
   margin-top: 1.1rem;
-  border: 1px solid var(--hair);
-  border-left: 3px solid var(--pick);
+  border: 1px solid var(--bc-border);
+  border-left: 3px solid var(--bc-red);
   border-radius: var(--radius);
-  background: var(--panel);
+  background: var(--bc-slate-100);
   padding: 0.9rem 1.1rem;
+  color: var(--bc-slate-900);
 }
 
 .recommended h2 { margin: 0 0 0.6rem; }
@@ -1385,8 +1398,12 @@ button.ghost.inline { margin-left: 0.6rem; }
 .map-node:focus-visible { outline: none; }
 .map-node:focus-visible .map-node-box { stroke-width: 3; }
 
-.map-node.is-pinned .map-node-box { fill: var(--signal); stroke: var(--signal); }
-.map-node.is-pinned .map-node-text { fill: var(--on-accent); }
+.map-node.is-pinned .map-node-box {
+  fill: var(--bc-slate-100);
+  stroke: var(--bc-red);
+  stroke-width: 1.75px;
+}
+.map-node.is-pinned .map-node-text { fill: var(--bc-slate-900); }
 
 .map-node.is-picked .map-node-box { stroke: var(--pick); stroke-width: 2.2; fill: var(--pick-soft); }
 
@@ -1426,7 +1443,7 @@ button.ghost.inline { margin-left: 0.6rem; }
   letter-spacing: 0.04em;
 }
 
-.map-node.is-pinned .map-node-train { fill: color-mix(in srgb, var(--on-accent) 82%, transparent); }
+.map-node.is-pinned .map-node-train { fill: var(--bc-slate-600); }
 
 /* ---- the explainer ----------------------------------------------------- */
 
@@ -1448,10 +1465,10 @@ button.ghost.inline { margin-left: 0.6rem; }
 .callout {
   margin: 1rem 0;
   padding: 0.85rem 1.05rem;
-  border: 1px solid var(--hair);
-  border-left: 3px solid var(--signal);
+  border: 1px solid var(--bc-border);
+  border-left: 3px solid var(--bc-red);
   border-radius: var(--radius);
-  background: var(--panel);
+  background: var(--bc-slate-100);
 }
 
 .callout h3 { margin: 0 0 0.35rem; font-size: 0.9rem; }
@@ -1560,7 +1577,7 @@ button.ghost.inline { margin-left: 0.6rem; }
 /* On a pinned node every marker sits on the solid accent fill, where --tg and --warn are
    an unchosen colour-on-colour pair. Same fix as .detail and the phase tags: hand them
    the foreground the fill was designed to carry. Shape still separates them. */
-.node.pinned .prov-tag { color: var(--on-accent); }
+.node.pinned .prov-tag { color: var(--bc-slate-600); }
 
 .map-node.is-untested .map-node-box { stroke-dasharray: 6 3; }
 .map-node.is-unverified .map-node-box { stroke-dasharray: 1.5 3.5; }
@@ -1679,12 +1696,13 @@ button.ghost.inline { margin-left: 0.6rem; }
   width: 1.6rem;
   height: 0;
   flex: none;
-  border-top: 2px solid var(--signal);
-  opacity: 0.75;
+  border-top: 2px solid var(--bc-slate-900);
+  opacity: 0.85;
 }
 
-.rule-untested { border-top-style: dashed; border-top-color: var(--tg); }
-.rule-unverified { border-top-style: dotted; border-top-color: var(--muted); }
+.rule-verified { border-top-color: var(--bc-slate-900); opacity: 0.9; }
+.rule-untested { border-top-style: dashed; border-top-color: var(--bc-slate-700); opacity: 0.85; }
+.rule-unverified { border-top-style: dotted; border-top-color: var(--bc-slate-500); opacity: 0.9; }
 
 /* The dot markers carry their wording in the list item beside them here, so the
    text-indent that hides their own label on a node would only leave a gap. */
@@ -1698,7 +1716,7 @@ button.ghost.inline { margin-left: 0.6rem; }
   display: inline-block;
 }
 
-.sw-general { background: var(--signal-soft); border-color: var(--signal); }
+.sw-general { background: var(--bc-slate-100); border-color: var(--bc-slate-600); }
 .sw-tg { background: var(--tg-soft); border-color: var(--tg); }
 .sw-eos { background: var(--eos-soft); border-color: var(--eos); }
 
@@ -1707,6 +1725,13 @@ button.ghost.inline { margin-left: 0.6rem; }
    provenance is now shown as the line and dot it actually is on the map (.rule and
    .prov-tag above), so only the lifecycle swatches are boxes. */
 .sw-mixed { background: transparent; border-color: var(--eos); border-style: dashed; }
+
+/* Selection mark: grey fill + red border, matching pinned map chips. */
+.sw-pinned {
+  background: var(--bc-slate-100);
+  border: 1.75px solid var(--bc-red);
+  box-sizing: border-box;
+}
 
 /* The reason a selection reaches no stack. The map showing nothing is not an answer;
    this is. */
