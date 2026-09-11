@@ -247,8 +247,9 @@ a:hover {
 
 /*
  * Map chrome like the unofficial disclaimer callout:
- * light: grey/white fills, dark text, near-black connectors, red pin border.
- * dark: same rules, via inverted --bc-slate-* / --bc-node-hover tokens above.
+ * light: grey/white fills, dark text, near-black idle connectors.
+ * Hover/trace: brand gradient edges + purple accent (not bulky red/black).
+ * Pin: thin crisp red. Dark: same rules via inverted --bc-slate-* tokens.
  */
 .map-link {
   stroke: var(--bc-slate-900) !important;
@@ -256,16 +257,21 @@ a:hover {
 .map-link.is-unverified {
   stroke: var(--bc-slate-600) !important;
 }
+/* Traced edges: brand gradient, thinner than the old 2.1 black hot stroke */
 .map-edge.is-hot .map-link {
-  stroke: var(--bc-slate-900) !important;
+  stroke: url(#bc-path-grad) !important;
+  stroke-width: 1.55 !important;
+  opacity: 0.92 !important;
 }
-/* Recommended stack path only — header red→purple→navy, not every lit edge */
+/* Recommended stack path — header red→purple→navy */
 .map-link.is-recommended {
   stroke: url(#bc-path-grad) !important;
   opacity: 0.78;
 }
 .map-edge.is-hot .map-link.is-recommended {
   stroke: url(#bc-path-grad) !important;
+  stroke-width: 1.55 !important;
+  opacity: 0.95 !important;
 }
 .map-link.is-unverified.is-recommended {
   stroke: url(#bc-path-grad) !important;
@@ -277,14 +283,20 @@ a:hover {
 .map-node .map-node-text {
   fill: var(--bc-slate-900) !important;
 }
+/* Hover: purple accent + soft purple/red glow, not a heavy dark frame */
 .map-node:hover .map-node-box {
   fill: var(--bc-node-hover) !important;
-  stroke: var(--bc-slate-900) !important;
+  stroke: var(--bc-purple) !important;
+  stroke-width: 1.45px !important;
+  filter: drop-shadow(0 0 2.5px rgba(108, 75, 148, 0.45))
+          drop-shadow(0 0 1px rgba(204, 9, 47, 0.22)) !important;
 }
+/* Pin: recognizable red, thin + crisp (no fat frame / glow) */
 .map-node.is-pinned .map-node-box {
   fill: var(--bc-slate-100) !important;
   stroke: var(--bc-red) !important;
-  stroke-width: 1.75px !important;
+  stroke-width: 1.45px !important;
+  filter: none !important;
 }
 .map-node.is-pinned .map-node-text {
   fill: var(--bc-slate-900) !important;
@@ -295,11 +307,21 @@ a:hover {
 .map-node.is-picked .map-node-box {
   fill: var(--bc-slate-100) !important;
   stroke: var(--bc-slate-900) !important;
-  stroke-width: 2px !important;
+  stroke-width: 1.6px !important;
 }
+/* Trace highlight: purple stroke + soft glow (lighter than old solid red) */
 .map-node.is-traced .map-node-box {
-  filter: none !important;
+  stroke: var(--bc-purple) !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 0 2.5px rgba(108, 75, 148, 0.5))
+          drop-shadow(0 0 1px rgba(204, 9, 47, 0.28)) !important;
+}
+/* Pinned wins over hover/trace accent — keep the thin red selection */
+.map-node.is-pinned:hover .map-node-box,
+.map-node.is-pinned.is-traced .map-node-box {
   stroke: var(--bc-red) !important;
+  stroke-width: 1.45px !important;
+  filter: none !important;
 }
 /* Lifecycle tints stay readable but keep grey fill base */
 .map-node.is-technical-guidance .map-node-box {
@@ -314,9 +336,14 @@ a:hover {
 .map-node.is-pinned.is-end-of-support .map-node-box {
   stroke: var(--bc-red) !important;
   fill: var(--bc-slate-100) !important;
+  stroke-width: 1.45px !important;
+  filter: none !important;
 }
 
 /* List/pill nodes under "Every version" match the same callout look */
+.node:hover {
+  border-color: var(--bc-purple) !important;
+}
 .node.lit {
   border-color: var(--bc-slate-600) !important;
   background: var(--bc-slate-100) !important;
@@ -324,9 +351,12 @@ a:hover {
 }
 .node.pinned {
   border-color: var(--bc-red) !important;
-  border-width: 1.5px !important;
+  border-width: 1.45px !important;
   background: var(--bc-slate-100) !important;
   color: var(--bc-slate-900) !important;
+}
+.node.pinned:hover {
+  border-color: var(--bc-red) !important;
 }
 .node.pinned .detail { color: var(--bc-slate-600) !important; }
 .node.picked {
@@ -858,7 +888,7 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
               background-color var(--step) ease, color var(--step) ease;
 }
 
-.node:hover { border-color: var(--muted); }
+.node:hover { border-color: var(--bc-purple); }
 
 .node:focus-visible {
   outline: 2px solid var(--signal);
@@ -888,7 +918,7 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 
 .node.pinned {
   border-color: var(--bc-red);
-  border-width: 1.5px;
+  border-width: 1.45px;
   background: var(--bc-slate-100);
   color: var(--bc-slate-900);
 }
@@ -1400,15 +1430,16 @@ button.ghost.inline { margin-left: 0.6rem; }
 .map-edge { transition: opacity var(--step) ease; }
 
 .map-edge.is-hot .map-link {
-  opacity: 1;
-  stroke-width: 2.1;
+  opacity: 0.92;
+  stroke-width: 1.55;
 }
 
 /* The two releases the connection is about, named at both ends, so a curve that crosses
-   others can still be followed to what it connects. */
+   others can still be followed to what it connects. Soft purple/red glow — not a fat frame. */
 .map-node.is-traced .map-node-box {
-  stroke-width: 2.2;
-  filter: drop-shadow(0 0 3px var(--signal));
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 2.5px rgba(108, 75, 148, 0.5))
+          drop-shadow(0 0 1px rgba(204, 9, 47, 0.28));
 }
 
 /* The map is reconciled rather than rebuilt, so these transitions finally have something
@@ -1468,7 +1499,7 @@ button.ghost.inline { margin-left: 0.6rem; }
 .map-node.is-pinned .map-node-box {
   fill: var(--bc-slate-100);
   stroke: var(--bc-red);
-  stroke-width: 1.75px;
+  stroke-width: 1.45px;
 }
 .map-node.is-pinned .map-node-text { fill: var(--bc-slate-900); }
 
