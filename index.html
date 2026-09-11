@@ -68,14 +68,7 @@
     </header>
 
     <header class="masthead">
-      <div class="masthead-row">
-        <h1>vkstack</h1>
-        <nav id="tabs">
-          <button data-view="stack" class="active" type="button">The stack</button>
-          <button data-view="usage" type="button">Usage</button>
-        </nav>
-      </div>
-      <p id="meta" class="meta"></p>
+<p id="meta" class="meta"></p>
       <p class="disclaimer">
         <strong>Unofficial.</strong> Not affiliated with or endorsed by Broadcom.
         Compatibility data is derived from the same undocumented endpoint the
@@ -184,50 +177,7 @@
         for that pair at all and the connection is inferred from the rest of the stack.
       </p>
     </section>
-
-    <section id="view-usage" class="view hidden">
-      <p class="lede">
-        This page is a static, TechDocs-styled reimplementation of the interactive
-        <a href="https://vkstack.warroyo.com" rel="noopener">vkstack</a> map. The original
-        project also ships a CLI and MCP server for agents and automation.
-      </p>
-
-      <h2>Wire it into an agent</h2>
-      <p class="usage-note">
-        From the upstream project — any client that reads an
-        <code>mcpServers</code> object:
-      </p>
-      <div class="snippet">
-        <pre id="snip-mcp"><code>{
-  "mcpServers": {
-    "vkstack": {
-      "command": "npx",
-      "args": ["-y", "@warroyo90/vkstack-mcp", "mcp", "--refresh-if-empty"]
-    }
-  }
-}</code></pre>
-        <button class="ghost copy" data-copy="snip-mcp" type="button">Copy</button>
-      </div>
-
-      <p class="usage-note">Claude Code:</p>
-      <div class="snippet">
-        <pre id="snip-claude"><code>claude mcp add vkstack -- npx -y @warroyo90/vkstack-mcp mcp --refresh-if-empty</code></pre>
-        <button class="ghost copy" data-copy="snip-claude" type="button">Copy</button>
-      </div>
-
-      <h2>Or put the binary on your PATH</h2>
-      <div class="snippet">
-        <pre id="snip-install"><code>curl -fsSL https://raw.githubusercontent.com/warroyo/vkstack/main/install.sh | sh
-vkstack refresh</code></pre>
-        <button class="ghost copy" data-copy="snip-install" type="button">Copy</button>
-      </div>
-
-      <p class="usage-out">
-        <a href="https://github.com/warroyo/vkstack" rel="noopener">Upstream repository</a> ·
-        <a href="https://interopmatrix.broadcom.com" rel="noopener">Official Interop Matrix</a>
-      </p>
-    </section>
-  </main>
+</main>
 
   <div id="peek" class="peek hidden" role="tooltip"></div>
 

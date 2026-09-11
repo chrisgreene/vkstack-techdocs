@@ -1367,7 +1367,7 @@ function currentURL() {
     params.set("version", state.pin.version);
   }
   if (state.hideLegacy !== URL_DEFAULTS.legacy) params.set("legacy", "1");
-  if (state.view !== URL_DEFAULTS.view) params.set("view", state.view);
+  // view tab removed — never serialize view into the URL
   // Which optional layers are open travels with the link, so a URL shared as "here is
   // the Avi-only view" comes back as the Avi-only view.
   if (withParam()) params.set("with", withParam());
@@ -1406,7 +1406,7 @@ function applyURL() {
   state.hideLegacy = params.get("legacy") !== "1";
   state.pin = product && version ? { product, version } : null;
   $("#hide-legacy").checked = state.hideLegacy;
-  state.view = params.get("view") === "usage" ? "usage" : "stack";
+  state.view = "stack";
   // Normalise rather than trust: the value is lowercased and filtered to keys that
   // actually name an optional layer, so `?with=NSX` opens NSX and `?with=haproxy` opens
   // nothing instead of half-applying.
@@ -2078,33 +2078,18 @@ function hidePeek(force = false) {
   if (force) renderRailPlaceholder();
 }
 
-// --- tabs -------------------------------------------------------------------
+// --- view -------------------------------------------------------------------
+// Usage tab removed; the page is the compatibility map only.
 
 function showView(name) {
-  state.view = name;
-  for (const v of ["stack", "usage"]) {
-    $(`#view-${v}`).classList.toggle("hidden", v !== name);
-  }
-  for (const btn of document.querySelectorAll("#tabs button")) {
-    btn.classList.toggle("active", btn.dataset.view === name);
-  }
-  // The tab is a personal habit rather than part of the view being pointed at, so it is
-  // remembered here and only reaches a link when it is not the default.
-  localStorage.setItem("vkstack.view", name);
-
-  // A hidden element has no width, so a map laid out while the usage tab was showing was
-  // fitted against a frame of zero. Re-fit on the way back, now that there is a frame.
-  if (name === "stack" && mapDOM.svg && world.w) {
+  state.view = "stack";
+  const stack = $("#view-stack");
+  if (stack) stack.classList.remove("hidden");
+  try { localStorage.removeItem("vkstack.view"); } catch (e) {}
+  if (mapDOM.svg && world.w) {
     if (view.dirty) applyView();
     else fitView();
   }
-}
-
-for (const btn of document.querySelectorAll("#tabs button")) {
-  btn.addEventListener("click", () => {
-    showView(btn.dataset.view);
-    syncURL(false);
-  });
 }
 
 // --- theme ------------------------------------------------------------------
@@ -2215,7 +2200,7 @@ async function boot() {
     $("#meta").textContent = err.message;
   }
 
-  showView(fromURL ? state.view : (localStorage.getItem("vkstack.view") || "stack"));
+  showView("stack");
   if (!state.pin && !fromURL) state.pin = myStack();
 
   await loadStack();
