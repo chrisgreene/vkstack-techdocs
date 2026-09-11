@@ -13,6 +13,7 @@
   --bc-slate-600: #494A5E;
   --bc-slate-700: #32344A;
   --bc-slate-900: #1B1D36;
+  --bc-node-hover: #FFFFFF;
   --bc-red: #CC092F;
   --bc-purple: #6C4B94;
   --bc-sapphire: #005C8A;
@@ -218,7 +219,7 @@ a:hover {
   border-bottom-color: var(--bc-red);
   font-weight: 600;
 }
-#tabs button:hover { color: var(--bc-slate-700); }
+#tabs button:hover { color: var(--bc-emphasis); }
 
 .disclaimer {
   background: var(--bc-slate-100);
@@ -229,6 +230,7 @@ a:hover {
   line-height: 20px;
   color: var(--bc-body);
 }
+.disclaimer strong { color: var(--bc-emphasis); }
 .meta {
   font-size: 13px;
   color: var(--bc-slate-500);
@@ -245,7 +247,8 @@ a:hover {
 
 /*
  * Map chrome like the unofficial disclaimer callout:
- * grey/white fills, dark text, black connectors, red border on the selection.
+ * light: grey/white fills, dark text, near-black connectors, red pin border.
+ * dark: same rules, via inverted --bc-slate-* / --bc-node-hover tokens above.
  */
 .map-link {
   stroke: var(--bc-slate-900) !important;
@@ -264,7 +267,7 @@ a:hover {
   fill: var(--bc-slate-900) !important;
 }
 .map-node:hover .map-node-box {
-  fill: #FFFFFF !important;
+  fill: var(--bc-node-hover) !important;
   stroke: var(--bc-slate-900) !important;
 }
 .map-node.is-pinned .map-node-box {
@@ -435,6 +438,25 @@ main.page {
 
     --on-accent: #10141b;
     --shadow: 0, 0, 0;
+
+    /* TechDocs chrome + disclaimer slate ramp inverted for dark surfaces.
+       Keep --bc-slate-700 dark so active chips stay dark-fill + white text. */
+    --bc-bg: #10141b;
+    --bc-header: #171d26;
+    --bc-footer: #121821;
+    --bc-body: #aab5c4;
+    --bc-emphasis: #e6eaf1;
+    --bc-border: #2a3441;
+    --bc-border-translucent: rgba(255, 255, 255, 0.14);
+    --bc-secondary: rgba(170, 181, 196, 0.85);
+    --bc-sapphire: #4CA3C7;
+    --bc-sapphire-400: #6BB8D6;
+    --bc-slate-100: #2A2C3E;
+    --bc-slate-200: #32344A;
+    --bc-slate-500: #8f9cb0;
+    --bc-slate-600: #C8CAD4;
+    --bc-slate-900: #e6eaf1;
+    --bc-node-hover: #32344A;
   }
 }
 
@@ -467,6 +489,25 @@ main.page {
 
   --on-accent: #10141b;
   --shadow: 0, 0, 0;
+
+  /* TechDocs chrome + disclaimer slate ramp inverted for dark surfaces.
+     Keep --bc-slate-700 dark so active chips stay dark-fill + white text. */
+  --bc-bg: #10141b;
+  --bc-header: #171d26;
+  --bc-footer: #121821;
+  --bc-body: #aab5c4;
+  --bc-emphasis: #e6eaf1;
+  --bc-border: #2a3441;
+  --bc-border-translucent: rgba(255, 255, 255, 0.14);
+  --bc-secondary: rgba(170, 181, 196, 0.85);
+  --bc-sapphire: #4CA3C7;
+  --bc-sapphire-400: #6BB8D6;
+  --bc-slate-100: #2A2C3E;
+  --bc-slate-200: #32344A;
+  --bc-slate-500: #8f9cb0;
+  --bc-slate-600: #C8CAD4;
+  --bc-slate-900: #e6eaf1;
+  --bc-node-hover: #32344A;
 }
 
 * { box-sizing: border-box; }
@@ -526,10 +567,11 @@ body {
   max-width: 82ch;
   font-size: 0.74rem;
   line-height: 1.45;
-  color: var(--faint);
+  /* Keep TechDocs callout body readable; bg/border come from the chrome block above. */
+  color: var(--bc-body);
 }
 
-.disclaimer strong { color: var(--muted); }
+.disclaimer strong { color: var(--bc-emphasis); }
 .disclaimer a { color: inherit; text-decoration-color: var(--hair); }
 .disclaimer a:hover { color: var(--ink); text-decoration-color: currentColor; }
 
@@ -1701,7 +1743,7 @@ button.ghost.inline { margin-left: 0.6rem; }
 }
 
 .rule-verified { border-top-color: var(--bc-slate-900); opacity: 0.9; }
-.rule-untested { border-top-style: dashed; border-top-color: var(--bc-slate-700); opacity: 0.85; }
+.rule-untested { border-top-style: dashed; border-top-color: var(--bc-slate-600); opacity: 0.85; }
 .rule-unverified { border-top-style: dotted; border-top-color: var(--bc-slate-500); opacity: 0.9; }
 
 /* The dot markers carry their wording in the list item beside them here, so the
