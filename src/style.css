@@ -259,6 +259,17 @@ a:hover {
 .map-edge.is-hot .map-link {
   stroke: var(--bc-slate-900) !important;
 }
+/* Recommended stack path only — header red→purple→navy, not every lit edge */
+.map-link.is-recommended {
+  stroke: url(#bc-path-grad) !important;
+  opacity: 0.78;
+}
+.map-edge.is-hot .map-link.is-recommended {
+  stroke: url(#bc-path-grad) !important;
+}
+.map-link.is-unverified.is-recommended {
+  stroke: url(#bc-path-grad) !important;
+}
 .map-node .map-node-box {
   fill: var(--bc-slate-100) !important;
   stroke: var(--bc-slate-600) !important;
@@ -1247,11 +1258,25 @@ button.ghost.inline { margin-left: 0.6rem; }
 /* ---- the map ----------------------------------------------------------- */
 
 .map-frame {
+  position: relative;
   margin: 0 0 1.8rem;
   border: 1px solid var(--hair);
   border-radius: var(--radius);
   background: var(--panel);
   padding: 0.5rem 0.5rem 0.75rem;
+  overflow: hidden;
+}
+/* Quiet TechDocs header-gradient strip along the top of the map panel */
+.map-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #CC092F, #6C4B94, #1B1D36);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* No overflow scrolling: the map pans. A scrollbar and a drag gesture are two ways to do

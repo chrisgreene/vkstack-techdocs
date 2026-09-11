@@ -586,9 +586,20 @@ function ensureSVG(host, width, height) {
       class: "map-svg", role: "presentation",
       preserveAspectRatio: "xMidYMid meet",
     });
+    // Brand path gradient (header red→purple→navy) for recommended-stack edges only.
+    const defs = svgEl("defs");
+    const grad = svgEl("linearGradient", {
+      id: "bc-path-grad", x1: "0%", y1: "0%", x2: "0%", y2: "100%",
+    });
+    for (const [offset, color] of [
+      ["0%", "#CC092F"], ["50%", "#6C4B94"], ["100%", "#1B1D36"],
+    ]) {
+      grad.append(svgEl("stop", { offset, "stop-color": color }));
+    }
+    defs.append(grad);
     mapDOM.links = svgEl("g", { class: "map-links" });     // under the nodes
     mapDOM.labels = svgEl("g", { class: "map-labels" });
-    mapDOM.svg.append(mapDOM.links, mapDOM.labels);
+    mapDOM.svg.append(defs, mapDOM.links, mapDOM.labels);
     host.append(mapDOM.svg);
     bindMapViewport();
   }
@@ -695,6 +706,9 @@ function reconcileLabels(rows, height) {
 // bends to its new shape instead of disappearing and coming back.
 function reconcileEdges(pos) {
   const seen = new Set();
+  // Recommended path = edges whose both endpoints carry the solver's recommended
+  // version for their layer (same predicate as .map-node.is-picked).
+  const recommendedIds = recommendedNodeIds();
   for (const edge of state.edges) {
     const a = pos.get(edge.from);
     const b = pos.get(edge.to);
@@ -710,6 +724,8 @@ function reconcileEdges(pos) {
     if (edge.unverified) cls.push("is-unverified");
     else if (edge.untested) cls.push("is-untested");
     if (edge.footnote) cls.push("has-footnote");
+    const onRecommended = recommendedIds.has(edge.from) && recommendedIds.has(edge.to);
+    if (onRecommended) cls.push("is-recommended");
 
     // Two paths per connection: the hairline that is drawn, and a fat transparent one
     // that is aimed at. A 1.4px stroke is a 1.4px hover target, which is not a target.
@@ -724,6 +740,7 @@ function reconcileEdges(pos) {
       bindMapEdge(group, edge.from, edge.to);
       requestAnimationFrame(() => group.classList.remove("is-entering"));
     }
+    group.classList.toggle("is-recommended", onRecommended);
     const [hit, line] = group.children;
     line.setAttribute("class", cls.join(" "));
     const d = `M ${a.cx} ${y1} C ${a.cx} ${mid}, ${b.cx} ${mid}, ${b.cx} ${y2}`;
@@ -1298,6 +1315,19 @@ function pinVersionFor(node) {
 function isRecommended(layerKey, node) {
   const chosen = state.recommended?.[layerKey];
   return !!chosen && node.releases?.includes(chosen.version);
+}
+
+// IDs of map nodes that carry the recommended version for their layer. Used to mark
+// connectors on the newest-working-stack path without lighting every lit edge.
+function recommendedNodeIds() {
+  const ids = new Set();
+  if (!state.recommended) return ids;
+  for (const layer of state.layers) {
+    for (const node of layer.nodes) {
+      if (isRecommended(layer.key, node)) ids.add(node.id);
+    }
+  }
+  return ids;
 }
 
 function togglePin(layerKey, node) {
