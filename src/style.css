@@ -13,6 +13,7 @@
   --bc-slate-600: #494A5E;
   --bc-slate-700: #32344A;
   --bc-slate-900: #1B1D36;
+  --bc-node-hover: #FFFFFF;
   --bc-red: #CC092F;
   --bc-purple: #6C4B94;
   --bc-sapphire: #005C8A;
@@ -162,12 +163,19 @@ a:hover {
   color: var(--bc-slate-500);
 }
 .page-intro h1 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.35rem;
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
   letter-spacing: -0.25px;
   color: var(--bc-emphasis);
+}
+.page-intro .page-subtitle {
+  margin: 0 0 0.65rem;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: var(--bc-slate-500);
 }
 .page-intro .lede {
   margin: 0;
@@ -207,11 +215,11 @@ a:hover {
   font: inherit;
 }
 #tabs button.active {
-  color: var(--bc-sapphire);
-  border-bottom-color: var(--bc-sapphire);
+  color: var(--bc-slate-900);
+  border-bottom-color: var(--bc-red);
   font-weight: 600;
 }
-#tabs button:hover { color: var(--bc-sapphire-400); }
+#tabs button:hover { color: var(--bc-emphasis); }
 
 .disclaimer {
   background: var(--bc-slate-100);
@@ -222,33 +230,138 @@ a:hover {
   line-height: 20px;
   color: var(--bc-body);
 }
+.disclaimer strong { color: var(--bc-emphasis); }
 .meta {
   font-size: 13px;
   color: var(--bc-slate-500);
   margin: 0.5rem 0 0;
 }
 
-/* Segmented control — sapphire active */
+/* Segmented control — quiet slate active (disclaimer palette) */
 .segmented .segment.is-active {
-  background: var(--bc-sapphire) !important;
+  background: var(--bc-slate-700) !important;
   color: #fff !important;
-  border-color: var(--bc-sapphire) !important;
+  border-color: var(--bc-slate-700) !important;
 }
-.pin-label { color: var(--bc-sapphire) !important; font-weight: 600; }
+.pin-label { color: var(--bc-slate-900) !important; font-weight: 600; }
 
-/* Map node accents already use --signal/--pick; reinforce pinned with red */
+/*
+ * Map chrome like the unofficial disclaimer callout:
+ * light: grey/white fills, dark text, near-black idle connectors.
+ * Hover/trace: brand gradient edges + purple accent (not bulky red/black).
+ * Pin: thin crisp red. Dark: same rules via inverted --bc-slate-* tokens.
+ */
+.map-link {
+  stroke: var(--bc-slate-900) !important;
+}
+.map-link.is-unverified {
+  stroke: var(--bc-slate-600) !important;
+}
+/* Traced edges: brand gradient, thinner than the old 2.1 black hot stroke */
+.map-edge.is-hot .map-link {
+  stroke: url(#bc-path-grad) !important;
+  stroke-width: 1.55 !important;
+  opacity: 0.92 !important;
+}
+/* Recommended stack path — header red→purple→navy */
+.map-link.is-recommended {
+  stroke: url(#bc-path-grad) !important;
+  opacity: 0.78;
+}
+.map-edge.is-hot .map-link.is-recommended {
+  stroke: url(#bc-path-grad) !important;
+  stroke-width: 1.55 !important;
+  opacity: 0.95 !important;
+}
+.map-link.is-unverified.is-recommended {
+  stroke: url(#bc-path-grad) !important;
+}
+.map-node .map-node-box {
+  fill: var(--bc-slate-100) !important;
+  stroke: var(--bc-slate-600) !important;
+}
+.map-node .map-node-text {
+  fill: var(--bc-slate-900) !important;
+}
+/* Hover: purple accent + soft purple/red glow, not a heavy dark frame */
+.map-node:hover .map-node-box {
+  fill: var(--bc-node-hover) !important;
+  stroke: var(--bc-purple) !important;
+  stroke-width: 1.45px !important;
+  filter: drop-shadow(0 0 2.5px rgba(108, 75, 148, 0.45))
+          drop-shadow(0 0 1px rgba(204, 9, 47, 0.22)) !important;
+}
+/* Pin: recognizable red, thin + crisp (no fat frame / glow) */
 .map-node.is-pinned .map-node-box {
-  fill: var(--bc-sapphire) !important;
-  stroke: var(--bc-sapphire) !important;
+  fill: var(--bc-slate-100) !important;
+  stroke: var(--bc-red) !important;
+  stroke-width: 1.45px !important;
+  filter: none !important;
+}
+.map-node.is-pinned .map-node-text {
+  fill: var(--bc-slate-900) !important;
+}
+.map-node.is-pinned .map-node-train {
+  fill: var(--bc-slate-600) !important;
 }
 .map-node.is-picked .map-node-box {
+  fill: var(--bc-slate-100) !important;
+  stroke: var(--bc-slate-900) !important;
+  stroke-width: 1.6px !important;
+}
+/* Trace highlight: purple stroke + soft glow (lighter than old solid red) */
+.map-node.is-traced .map-node-box {
   stroke: var(--bc-purple) !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 0 2.5px rgba(108, 75, 148, 0.5))
+          drop-shadow(0 0 1px rgba(204, 9, 47, 0.28)) !important;
 }
-.map-link {
-  stroke: var(--bc-sapphire) !important;
-}
-.map-edge.is-hot .map-link {
+/* Pinned wins over hover/trace accent — keep the thin red selection */
+.map-node.is-pinned:hover .map-node-box,
+.map-node.is-pinned.is-traced .map-node-box {
   stroke: var(--bc-red) !important;
+  stroke-width: 1.45px !important;
+  filter: none !important;
+}
+/* Lifecycle tints stay readable but keep grey fill base */
+.map-node.is-technical-guidance .map-node-box {
+  fill: var(--tg-soft) !important;
+  stroke: var(--tg) !important;
+}
+.map-node.is-end-of-support .map-node-box {
+  fill: var(--eos-soft) !important;
+  stroke: var(--eos) !important;
+}
+.map-node.is-pinned.is-technical-guidance .map-node-box,
+.map-node.is-pinned.is-end-of-support .map-node-box {
+  stroke: var(--bc-red) !important;
+  fill: var(--bc-slate-100) !important;
+  stroke-width: 1.45px !important;
+  filter: none !important;
+}
+
+/* List/pill nodes under "Every version" match the same callout look */
+.node:hover {
+  border-color: var(--bc-purple) !important;
+}
+.node.lit {
+  border-color: var(--bc-slate-600) !important;
+  background: var(--bc-slate-100) !important;
+  color: var(--bc-slate-900) !important;
+}
+.node.pinned {
+  border-color: var(--bc-red) !important;
+  border-width: 1.45px !important;
+  background: var(--bc-slate-100) !important;
+  color: var(--bc-slate-900) !important;
+}
+.node.pinned:hover {
+  border-color: var(--bc-red) !important;
+}
+.node.pinned .detail { color: var(--bc-slate-600) !important; }
+.node.picked {
+  border-color: var(--bc-slate-900) !important;
+  background: var(--bc-slate-100) !important;
 }
 
 main.page {
@@ -300,11 +413,11 @@ main.page {
      bounds a control — an input, a button — uses --edge instead, which clears it. */
   --edge: rgba(0, 0, 0, 0.175);
 
-  /* Broadcom TechDocs accents: sapphire lit path, purple recommended, red emphasis. */
-  --signal: #005C8A;
-  --signal-soft: #E5F2F7;
-  --pick: #6C4B94;
-  --pick-soft: #F0EAF6;
+  /* Disclaimer-like accents: slate path, near-black connectors, red selection. */
+  --signal: #32344A;
+  --signal-soft: #F5F5F6;
+  --pick: #1B1D36;
+  --pick-soft: #E8E8EB;
   --warn: #CC092F;
   /* Support lifecycle. Amber for Technical Guidance, muted red for End of Support —
      both quieter than the indigo path so they qualify a node without competing with it. */
@@ -354,10 +467,10 @@ main.page {
     --hair: #2a3441;
     --edge: #5f6d7f;
 
-    --signal: #4CA3C7;
-    --signal-soft: #0A2A3A;
-    --pick: #9B7EBF;
-    --pick-soft: #2A1F3A;
+    --signal: #C8CAD4;
+    --signal-soft: #2A2C3E;
+    --pick: #E8E8EB;
+    --pick-soft: #32344A;
     --warn: #f0906a;
     --tg: #dda94a;
     --tg-soft: #33290f;
@@ -366,6 +479,25 @@ main.page {
 
     --on-accent: #10141b;
     --shadow: 0, 0, 0;
+
+    /* TechDocs chrome + disclaimer slate ramp inverted for dark surfaces.
+       Keep --bc-slate-700 dark so active chips stay dark-fill + white text. */
+    --bc-bg: #10141b;
+    --bc-header: #171d26;
+    --bc-footer: #121821;
+    --bc-body: #aab5c4;
+    --bc-emphasis: #e6eaf1;
+    --bc-border: #2a3441;
+    --bc-border-translucent: rgba(255, 255, 255, 0.14);
+    --bc-secondary: rgba(170, 181, 196, 0.85);
+    --bc-sapphire: #4CA3C7;
+    --bc-sapphire-400: #6BB8D6;
+    --bc-slate-100: #2A2C3E;
+    --bc-slate-200: #32344A;
+    --bc-slate-500: #8f9cb0;
+    --bc-slate-600: #C8CAD4;
+    --bc-slate-900: #e6eaf1;
+    --bc-node-hover: #32344A;
   }
 }
 
@@ -386,10 +518,10 @@ main.page {
   --hair: #2a3441;
   --edge: #5f6d7f;
 
-  --signal: #4CA3C7;
-  --signal-soft: #0A2A3A;
-  --pick: #9B7EBF;
-  --pick-soft: #2A1F3A;
+  --signal: #C8CAD4;
+  --signal-soft: #2A2C3E;
+  --pick: #E8E8EB;
+  --pick-soft: #32344A;
   --warn: #f0906a;
   --tg: #dda94a;
   --tg-soft: #33290f;
@@ -398,6 +530,25 @@ main.page {
 
   --on-accent: #10141b;
   --shadow: 0, 0, 0;
+
+  /* TechDocs chrome + disclaimer slate ramp inverted for dark surfaces.
+     Keep --bc-slate-700 dark so active chips stay dark-fill + white text. */
+  --bc-bg: #10141b;
+  --bc-header: #171d26;
+  --bc-footer: #121821;
+  --bc-body: #aab5c4;
+  --bc-emphasis: #e6eaf1;
+  --bc-border: #2a3441;
+  --bc-border-translucent: rgba(255, 255, 255, 0.14);
+  --bc-secondary: rgba(170, 181, 196, 0.85);
+  --bc-sapphire: #4CA3C7;
+  --bc-sapphire-400: #6BB8D6;
+  --bc-slate-100: #2A2C3E;
+  --bc-slate-200: #32344A;
+  --bc-slate-500: #8f9cb0;
+  --bc-slate-600: #C8CAD4;
+  --bc-slate-900: #e6eaf1;
+  --bc-node-hover: #32344A;
 }
 
 * { box-sizing: border-box; }
@@ -457,10 +608,11 @@ body {
   max-width: 82ch;
   font-size: 0.74rem;
   line-height: 1.45;
-  color: var(--faint);
+  /* Keep TechDocs callout body readable; bg/border come from the chrome block above. */
+  color: var(--bc-body);
 }
 
-.disclaimer strong { color: var(--muted); }
+.disclaimer strong { color: var(--bc-emphasis); }
 .disclaimer a { color: inherit; text-decoration-color: var(--hair); }
 .disclaimer a:hover { color: var(--ink); text-decoration-color: currentColor; }
 
@@ -606,7 +758,8 @@ h2 { font-size: 0.9rem; margin: 1.6rem 0 0.6rem; }
 .pin-label {
   font-family: var(--mono);
   font-size: 0.82rem;
-  color: var(--signal);
+  color: var(--bc-slate-900);
+  font-weight: 600;
 }
 
 button.ghost {
@@ -648,8 +801,9 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 .segmented .segment:hover { color: var(--ink); }
 
 .segmented .segment.is-active {
-  background: var(--signal);
-  color: var(--on-accent);
+  background: var(--bc-slate-700);
+  color: #fff;
+  border-color: var(--bc-slate-700);
 }
 
 .segmented .segment:focus-visible {
@@ -734,7 +888,7 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
               background-color var(--step) ease, color var(--step) ease;
 }
 
-.node:hover { border-color: var(--muted); }
+.node:hover { border-color: var(--bc-purple); }
 
 .node:focus-visible {
   outline: 2px solid var(--signal);
@@ -757,21 +911,24 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 .node.dim:hover { opacity: 0.75; }
 
 .node.lit {
-  border-color: var(--signal);
-  background: var(--signal-soft);
-  color: var(--ink);
+  border-color: var(--bc-slate-600);
+  background: var(--bc-slate-100);
+  color: var(--bc-slate-900);
 }
 
 .node.pinned {
-  border-color: var(--signal);
-  border-width: 2px;
-  background: var(--signal);
-  color: var(--on-accent);
+  border-color: var(--bc-red);
+  border-width: 1.45px;
+  background: var(--bc-slate-100);
+  color: var(--bc-slate-900);
 }
 
-.node.pinned .detail { color: color-mix(in srgb, var(--on-accent) 78%, transparent); }
+.node.pinned .detail { color: var(--bc-slate-600); }
 
-.node.picked { border-color: var(--pick); background: var(--pick-soft); }
+.node.picked {
+  border-color: var(--bc-slate-900);
+  background: var(--bc-slate-100);
+}
 
 .node.nodata {
   border-style: dashed;
@@ -819,11 +976,12 @@ button.ghost:hover { color: var(--ink); border-color: var(--muted); }
 
 .recommended {
   margin-top: 1.1rem;
-  border: 1px solid var(--hair);
-  border-left: 3px solid var(--pick);
+  border: 1px solid var(--bc-border);
+  border-left: 3px solid var(--bc-red);
   border-radius: var(--radius);
-  background: var(--panel);
+  background: var(--bc-slate-100);
   padding: 0.9rem 1.1rem;
+  color: var(--bc-slate-900);
 }
 
 .recommended h2 { margin: 0 0 0.6rem; }
@@ -1130,11 +1288,25 @@ button.ghost.inline { margin-left: 0.6rem; }
 /* ---- the map ----------------------------------------------------------- */
 
 .map-frame {
+  position: relative;
   margin: 0 0 1.8rem;
   border: 1px solid var(--hair);
   border-radius: var(--radius);
   background: var(--panel);
   padding: 0.5rem 0.5rem 0.75rem;
+  overflow: hidden;
+}
+/* Quiet TechDocs header-gradient strip along the top of the map panel */
+.map-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #CC092F, #6C4B94, #1B1D36);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* No overflow scrolling: the map pans. A scrollbar and a drag gesture are two ways to do
@@ -1219,7 +1391,7 @@ button.ghost.inline { margin-left: 0.6rem; }
 .map-link {
   fill: none;
   stroke: var(--signal);
-  stroke-width: 1.4;
+  stroke-width: 1.1;
   opacity: 0.42;
 }
 
@@ -1240,7 +1412,7 @@ button.ghost.inline { margin-left: 0.6rem; }
 
 /* ---- tracing one connection -------------------------------------------- */
 
-/* The stroke is the hit area in SVG, and a 1.4px stroke is not something anyone can
+/* The stroke is the hit area in SVG, and a 1.1px stroke is not something anyone can
    point at. Every connection carries a fat invisible twin that takes the pointer. */
 .map-hit {
   fill: none;
@@ -1258,15 +1430,16 @@ button.ghost.inline { margin-left: 0.6rem; }
 .map-edge { transition: opacity var(--step) ease; }
 
 .map-edge.is-hot .map-link {
-  opacity: 1;
-  stroke-width: 2.6;
+  opacity: 0.92;
+  stroke-width: 1.55;
 }
 
 /* The two releases the connection is about, named at both ends, so a curve that crosses
-   others can still be followed to what it connects. */
+   others can still be followed to what it connects. Soft purple/red glow — not a fat frame. */
 .map-node.is-traced .map-node-box {
-  stroke-width: 2.2;
-  filter: drop-shadow(0 0 3px var(--signal));
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 2.5px rgba(108, 75, 148, 0.5))
+          drop-shadow(0 0 1px rgba(204, 9, 47, 0.28));
 }
 
 /* The map is reconciled rather than rebuilt, so these transitions finally have something
@@ -1323,8 +1496,12 @@ button.ghost.inline { margin-left: 0.6rem; }
 .map-node:focus-visible { outline: none; }
 .map-node:focus-visible .map-node-box { stroke-width: 3; }
 
-.map-node.is-pinned .map-node-box { fill: var(--signal); stroke: var(--signal); }
-.map-node.is-pinned .map-node-text { fill: var(--on-accent); }
+.map-node.is-pinned .map-node-box {
+  fill: var(--bc-slate-100);
+  stroke: var(--bc-red);
+  stroke-width: 1.45px;
+}
+.map-node.is-pinned .map-node-text { fill: var(--bc-slate-900); }
 
 .map-node.is-picked .map-node-box { stroke: var(--pick); stroke-width: 2.2; fill: var(--pick-soft); }
 
@@ -1364,7 +1541,7 @@ button.ghost.inline { margin-left: 0.6rem; }
   letter-spacing: 0.04em;
 }
 
-.map-node.is-pinned .map-node-train { fill: color-mix(in srgb, var(--on-accent) 82%, transparent); }
+.map-node.is-pinned .map-node-train { fill: var(--bc-slate-600); }
 
 /* ---- the explainer ----------------------------------------------------- */
 
@@ -1386,10 +1563,10 @@ button.ghost.inline { margin-left: 0.6rem; }
 .callout {
   margin: 1rem 0;
   padding: 0.85rem 1.05rem;
-  border: 1px solid var(--hair);
-  border-left: 3px solid var(--signal);
+  border: 1px solid var(--bc-border);
+  border-left: 3px solid var(--bc-red);
   border-radius: var(--radius);
-  background: var(--panel);
+  background: var(--bc-slate-100);
 }
 
 .callout h3 { margin: 0 0 0.35rem; font-size: 0.9rem; }
@@ -1498,7 +1675,7 @@ button.ghost.inline { margin-left: 0.6rem; }
 /* On a pinned node every marker sits on the solid accent fill, where --tg and --warn are
    an unchosen colour-on-colour pair. Same fix as .detail and the phase tags: hand them
    the foreground the fill was designed to carry. Shape still separates them. */
-.node.pinned .prov-tag { color: var(--on-accent); }
+.node.pinned .prov-tag { color: var(--bc-slate-600); }
 
 .map-node.is-untested .map-node-box { stroke-dasharray: 6 3; }
 .map-node.is-unverified .map-node-box { stroke-dasharray: 1.5 3.5; }
@@ -1617,12 +1794,13 @@ button.ghost.inline { margin-left: 0.6rem; }
   width: 1.6rem;
   height: 0;
   flex: none;
-  border-top: 2px solid var(--signal);
-  opacity: 0.75;
+  border-top: 2px solid var(--bc-slate-900);
+  opacity: 0.85;
 }
 
-.rule-untested { border-top-style: dashed; border-top-color: var(--tg); }
-.rule-unverified { border-top-style: dotted; border-top-color: var(--muted); }
+.rule-verified { border-top-color: var(--bc-slate-900); opacity: 0.9; }
+.rule-untested { border-top-style: dashed; border-top-color: var(--bc-slate-600); opacity: 0.85; }
+.rule-unverified { border-top-style: dotted; border-top-color: var(--bc-slate-500); opacity: 0.9; }
 
 /* The dot markers carry their wording in the list item beside them here, so the
    text-indent that hides their own label on a node would only leave a gap. */
@@ -1636,7 +1814,7 @@ button.ghost.inline { margin-left: 0.6rem; }
   display: inline-block;
 }
 
-.sw-general { background: var(--signal-soft); border-color: var(--signal); }
+.sw-general { background: var(--bc-slate-100); border-color: var(--bc-slate-600); }
 .sw-tg { background: var(--tg-soft); border-color: var(--tg); }
 .sw-eos { background: var(--eos-soft); border-color: var(--eos); }
 
@@ -1645,6 +1823,13 @@ button.ghost.inline { margin-left: 0.6rem; }
    provenance is now shown as the line and dot it actually is on the map (.rule and
    .prov-tag above), so only the lifecycle swatches are boxes. */
 .sw-mixed { background: transparent; border-color: var(--eos); border-style: dashed; }
+
+/* Selection mark: grey fill + red border, matching pinned map chips. */
+.sw-pinned {
+  background: var(--bc-slate-100);
+  border: 1.75px solid var(--bc-red);
+  box-sizing: border-box;
+}
 
 /* The reason a selection reaches no stack. The map showing nothing is not an answer;
    this is. */
